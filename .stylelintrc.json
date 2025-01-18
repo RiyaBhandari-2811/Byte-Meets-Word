@@ -1,0 +1,9 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-no-invalid-hex": true,
+    "declaration-colon-space-before": "never",
+    "indentation": 2,
+    "number-leading-zero": "always"
+  }
+}
