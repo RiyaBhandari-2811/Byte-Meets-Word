@@ -6,13 +6,19 @@ on:
 
 jobs:
   validate-pr-title:
+    if: github.event.pull_request.state != 'closed'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
       - name: PR Title Validation
-        uses: ./.github/actions/pr-title-validator-action
+        uses: amannn/action-semantic-pull-request@v5
         with:
-          pr-title: ${{ github.event.pull_request.title }}
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            test
+            chore
+          requireScope: false

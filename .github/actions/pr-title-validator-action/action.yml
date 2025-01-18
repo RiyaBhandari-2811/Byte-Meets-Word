@@ -1,9 +1,0 @@
-name: 'PR Title Validator'
-description: 'Validates PR title based on Conventional Commits format'
-inputs:
-  pr-title:
-    description: 'The title of the PR'
-    required: true
-runs:
-  using: 'node12'
-  main: 'index.js'
