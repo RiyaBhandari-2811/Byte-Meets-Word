@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import stylelintPlugin from 'vite-plugin-stylelint';
+import Inspect from 'vite-plugin-inspect';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), stylelintPlugin()],
+  plugins: [react(), Inspect()],
 });
