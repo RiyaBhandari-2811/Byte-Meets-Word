@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-no-invalid-hex": true,
+    "declaration-colon-space-before": "never",
+    "indentation": 2,
+    "number-leading-zero": "always",
+    "scss/at-rule-no-unknown": true,
+    "scss/dollar-variable-no-missing-interpolation": true,
+    "scss/dollar-variable-no-unused": true,
+    "scss/no-duplicate-mixins": true,
+    "scss/operator-no-unspaced": true,
+    "scss/function-no-unknown": true,
+    "scss/at-import-no-partial-leading-underscore": true
+  }
+}
