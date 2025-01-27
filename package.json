@@ -1,5 +1,8 @@
 {
   "name": "byte-meets-word",
+  "author": {
+    "name": "Riya Bhandari"
+  },
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,6 +18,11 @@
     "lint:style:fix": "stylelint 'src/**/*.{css,scss,sass}' --fix"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/roboto": "^5.1.1",
+    "@mui/icons-material": "^6.4.1",
+    "@mui/material": "^6.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
