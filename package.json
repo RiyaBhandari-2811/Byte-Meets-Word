@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "preview": "vite preview",
     "prepare": "husky",
-    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write .",
+    "eslint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "stylelint": "stylelint 'src/**/*.{css,scss,sass}'",
     "lint:style:fix": "stylelint 'src/**/*.{css,scss,sass}' --fix"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "globals": "^15.14.0",
     "lint-staged": "^15.4.1",
     "prettier": "^3.4.2",
+    "sass-embedded": "^1.83.4",
     "scss": "^0.2.4",
     "stylelint": "^16.13.2",
     "stylelint-config-standard": "^37.0.0",

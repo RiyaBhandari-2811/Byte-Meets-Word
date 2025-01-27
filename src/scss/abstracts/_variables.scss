@@ -1,19 +1,31 @@
 /* Light Mode */
-$primary-light: rgb(248 250 252 / 100%);      
-$secondary-light: rgb(241 245 249 / 100%);    
-$tertiary-light: rgb(30 41 59 / 100%);        
-$quaternary-light: rgb(107 114 128 / 100%);   
-$quinary-light: rgb(156 163 175 / 100%);      
+$light-mode-colors: (
+  primary: rgb(248 250 252 / 100%),
+  secondary: rgb(241 245 249 / 100%),
+  tertiary: rgb(30 41 59 / 100%),
+  quaternary: rgb(107 114 128 / 100%),
+  quinary: rgb(156 163 175 / 100%),
+);
 
 /* Dark Mode */
-$primary-dark: rgb(15 23 42 / 100%);
-$secondary-dark: rgb(30 41 59 / 100%);
-$tertiary-dark: rgb(248 250 252 / 100%);
-$quaternary-dark: rgb(203 213 225 / 100%);
-$quinary-dark: rgb(156 163 175 / 100%);
+$dark-mode-colors: (
+  primary: rgb(15 23 42 / 100%),
+  secondary: rgb(30 41 59 / 100%),
+  tertiary: rgb(248 250 252 / 100%),
+  quaternary: rgb(203 213 225 / 100%),
+  quinary: rgb(156 163 175 / 100%),
+);
+$allowed-colors: (
+  primary: "primary",
+  secondary: "secondary",
+  tertiary: "tertiary",
+  quaternary: "quaternary",
+  quinary: "quinary",
+);
+
 
 /* Gradient */
-$gradient: linear-gradient(90deg, #22D3EE 0%, #0EA5E9 100%);
+$gradient: linear-gradient(90deg, #22d3ee 0%, #0ea5e9 100%);
 
 /* border-radius */
 $border-radius-10: 10px;

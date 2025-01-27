@@ -1,4 +1,5 @@
 @use 'breakpoints' as *;
+@use 'variables' as variable;
 @use 'sass:map';
 
 /* Mixin for flex */
@@ -35,3 +36,13 @@
     @error "Invalid device: `#{$device}`. Available options are: #{map.keys($breakpoints)}.";
   }
 }
+
+/* Mixin for applying colors */
+@mixin apply-color($property, $color-name) {
+  @if map.has-key(variable.$allowed-colors, $color-name) {
+    #{$property}: var(--#{map.get(variable.$allowed-colors, $color-name)});
+  } @else {
+    @error "The color '#{$color-name}' is not allowed. Please use an allowed color.";
+  }
+}
+
