@@ -1,0 +1,19 @@
+@use '../abstracts/variables' as var;
+@use '../abstracts/mixins' as mixin;
+
+body.light-mode {
+  @each $name, $value in var.$light-mode-colors {
+    --#{$name}: #{$value};
+  }
+}
+
+body.dark-mode {
+  @each $name, $value in var.$dark-mode-colors {
+    --#{$name}: #{$value};
+  }
+}
+
+body {
+  @include mixin.apply-color(background-color, primary);
+  @include mixin.apply-color(color, tertiary);
+}

@@ -1,0 +1,48 @@
+@use 'breakpoints' as *;
+@use 'variables' as variable;
+@use 'sass:map';
+
+/* Mixin for flex */
+@mixin flex($direction: row, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+/* Mixin for text ellipsis */
+@mixin text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+  
+/* Mixin for line clamp */
+@mixin line-clamp($lines: 3) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+  
+/* Mixin for responsive breakpoints */
+@mixin respond-to($device) {
+  @if map.has-key($breakpoints, $device) {
+    @media #{map.get($breakpoints, $device)} {
+      @content;
+    }
+  } @else {
+    @error "Invalid device: `#{$device}`. Available options are: #{map.keys($breakpoints)}.";
+  }
+}
+
+/* Mixin for applying colors */
+@mixin apply-color($property, $color-name) {
+  @if map.has-key(variable.$allowed-colors, $color-name) {
+    #{$property}: var(--#{map.get(variable.$allowed-colors, $color-name)});
+  } @else {
+    @error "The color '#{$color-name}' is not allowed. Please use an allowed color.";
+  }
+}
+
