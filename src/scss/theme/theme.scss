@@ -13,6 +13,12 @@ body.dark-mode {
   }
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   @include mixin.apply-color(background-color, primary);
   @include mixin.apply-color(color, tertiary);

@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import './NavBar.scss';
 
 interface NavBarProps {
   toggleTheme: () => void;
