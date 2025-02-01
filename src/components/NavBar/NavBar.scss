@@ -1,0 +1,24 @@
+@use '@scss/abstracts/variables' as var;
+@use '@scss/abstracts/fonts' as font;
+@use '@scss/abstracts/mixins' as mixin;
+
+.nav-bar {
+  &__toolbar {
+    @include mixin.flex(row, center, space-between);
+
+    &__title {
+      @include mixin.flex(row, center, center);
+
+      gap: 0.4rem;
+      cursor: pointer;
+      user-select: none;
+
+      &-text {
+        color: inherit;
+        font-weight: font.$roboto-bold !important;
+        letter-spacing: 0.1rem;
+      }
+    }
+  }
+}
+

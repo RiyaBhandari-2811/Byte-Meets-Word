@@ -1,6 +1,7 @@
 @use 'breakpoints' as *;
 @use 'variables' as variable;
 @use 'sass:map';
+@use 'sass:list';
 
 /* Mixin for flex */
 @mixin flex($direction: row, $align: center, $justify: center) {
@@ -16,7 +17,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-  
+
 /* Mixin for line clamp */
 @mixin line-clamp($lines: 3) {
   display: -webkit-box;
@@ -25,15 +26,27 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-  
+
 /* Mixin for responsive breakpoints */
-@mixin respond-to($device) {
-  @if map.has-key($breakpoints, $device) {
-    @media #{map.get($breakpoints, $device)} {
+@mixin respond-to($devices...) {
+  $media-queries: ();
+
+  @each $device in $devices {
+    @if map.has-key($breakpoints, $device) {
+      $media-queries: list.append(
+        $media-queries,
+        #{map.get($breakpoints, $device)},
+        comma
+      );
+    } @else {
+      @error "Invalid device: `#{$device}`. Available options are: #{map-keys($breakpoints)}.";
+    }
+  }
+
+  @if list.length($media-queries) > 0 {
+    @media #{$media-queries} {
       @content;
     }
-  } @else {
-    @error "Invalid device: `#{$device}`. Available options are: #{map.keys($breakpoints)}.";
   }
 }
 
@@ -45,4 +58,3 @@
     @error "The color '#{$color-name}' is not allowed. Please use an allowed color.";
   }
 }
-

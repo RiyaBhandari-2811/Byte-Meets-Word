@@ -11,7 +11,7 @@ const generateTheme: GenerateTheme = () => {
   return createTheme({
     palette: {
       primary: {
-        main: getCssVariable('--tertiary'),
+        main: getCssVariable('--primary'),
       },
       secondary: {
         main: getCssVariable('--secondary'),

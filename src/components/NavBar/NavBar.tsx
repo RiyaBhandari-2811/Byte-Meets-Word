@@ -1,17 +1,25 @@
-import { Button } from '@mui/material';
+import { AppBar, Stack, Toolbar, Typography } from '@mui/material';
+import AdbIcon from '@mui/icons-material/Adb';
 import './NavBar.scss';
+import NavItems from '../navitems/NavItems';
 
 interface NavBarProps {
-  toggleTheme: () => void;
+  toggleTheme?: () => void;
 }
 
-const NavBar = ({ toggleTheme }: NavBarProps) => {
+const NavBar: React.FC<NavBarProps> = () => {
   return (
-    <div>
-      <Button color="primary" onClick={toggleTheme}>
-        Toggle Theme
-      </Button>
-    </div>
+    <AppBar className="nav-bar" position="static" elevation={0}>
+      <Toolbar className="nav-bar__toolbar" disableGutters>
+        <Stack className="nav-bar__toolbar__title" direction="row">
+          <AdbIcon className="nav-bar__title-logo" />
+          <Typography component="a" className="nav-bar__title-text">
+            Riya's Blog
+          </Typography>
+        </Stack>
+        <NavItems />
+      </Toolbar>
+    </AppBar>
   );
 };
 

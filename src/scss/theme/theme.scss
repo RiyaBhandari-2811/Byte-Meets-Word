@@ -1,5 +1,6 @@
 @use '../abstracts/variables' as var;
 @use '../abstracts/mixins' as mixin;
+@use '../abstracts/fonts' as font;
 
 body.light-mode {
   @each $name, $value in var.$light-mode-colors {
@@ -17,6 +18,7 @@ html,
 body {
   height: 100%;
   margin: 0;
+  font-family: font.$roboto-font;
 }
 
 body {
