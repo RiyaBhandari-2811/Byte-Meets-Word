@@ -2,6 +2,7 @@ import { AppBar, Stack, Toolbar, Typography } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
+import GradientText from '../gradienttext/GradientText';
 
 interface NavBarProps {
   toggleTheme?: () => void;
@@ -37,12 +38,12 @@ const NavBar: React.FC<NavBarProps> = () => {
                 xs: '0.7rem',
                 sm: '1rem',
                 md: '1rem',
-                lg: '1rem',
+                lg: '1.2rem',
                 xl: '1.5rem',
               },
             }}
           >
-            Riya's Blog
+            <GradientText text={"Riya's Blog"} />
           </Typography>
         </Stack>
         <NavItems />

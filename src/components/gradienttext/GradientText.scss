@@ -1,0 +1,9 @@
+@use '../../scss/abstracts/variables' as var;
+
+.gradient-text {
+  background: var.$gradient;
+  background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}

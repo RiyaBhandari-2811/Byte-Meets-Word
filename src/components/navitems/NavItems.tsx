@@ -32,7 +32,7 @@ const NavItems: React.FC = () => {
                           xs: '0.7rem',
                           sm: '1rem',
                           md: '1rem',
-                          lg: '1rem',
+                          lg: '1.1rem',
                           xl: '1.5rem',
                         },
                         margin: { md: '0.5rem', lg: '1rem', xl: '1rem' },
