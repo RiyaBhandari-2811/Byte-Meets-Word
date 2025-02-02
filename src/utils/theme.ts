@@ -11,6 +11,12 @@ declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     xxl: true;
   }
+
+  interface PaletteOptions {
+    quaternary: {
+      main: string;
+    };
+  }
 }
 
 const generateTheme: GenerateTheme = () => {
@@ -21,6 +27,9 @@ const generateTheme: GenerateTheme = () => {
       },
       secondary: {
         main: getCssVariable('--secondary'),
+      },
+      quaternary: {
+        main: getCssVariable('--quaternary'),
       },
     },
     typography: {
