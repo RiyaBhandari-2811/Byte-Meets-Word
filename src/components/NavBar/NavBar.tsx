@@ -11,9 +11,37 @@ const NavBar: React.FC<NavBarProps> = () => {
   return (
     <AppBar className="nav-bar" position="static" elevation={0}>
       <Toolbar className="nav-bar__toolbar" disableGutters>
-        <Stack className="nav-bar__toolbar__title" direction="row">
-          <AdbIcon className="nav-bar__title-logo" />
-          <Typography component="a" className="nav-bar__title-text">
+        <Stack
+          className="nav-bar__toolbar__title"
+          direction="row"
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <AdbIcon
+            className="nav-bar__title-logo"
+            sx={{
+              width: {
+                xs: '1rem',
+                sm: '1.5rem',
+                md: '2rem',
+                lg: '2.5rem',
+                xl: '3rem',
+              },
+            }}
+          />
+          <Typography
+            component="a"
+            className="nav-bar__title-text"
+            sx={{
+              fontSize: {
+                xs: '0.7rem',
+                sm: '1rem',
+                md: '1rem',
+                lg: '1rem',
+                xl: '1.5rem',
+              },
+            }}
+          >
             Riya's Blog
           </Typography>
         </Stack>

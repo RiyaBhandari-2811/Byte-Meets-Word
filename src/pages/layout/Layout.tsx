@@ -19,7 +19,7 @@ const Layout: React.FC = () => {
 
   return (
     <ThemeProvider theme={generateTheme()}>
-      <Container>
+      <Container sx={{ paddingLeft: { lg: '1rem', xl: '0px', xxl: '0px' } }}>
         <Stack className="layout">
           <NavBar toggleTheme={toggleTheme} />
           <Box component="main" className="layout__content">

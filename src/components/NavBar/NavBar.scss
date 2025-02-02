@@ -3,22 +3,15 @@
 @use '@scss/abstracts/mixins' as mixin;
 
 .nav-bar {
+  margin-top: 1rem;
+
   &__toolbar {
     @include mixin.flex(row, center, space-between);
 
     &__title {
-      @include mixin.flex(row, center, center);
-
       gap: 0.4rem;
       cursor: pointer;
       user-select: none;
-
-      &-text {
-        color: inherit;
-        font-weight: font.$roboto-bold !important;
-        letter-spacing: 0.1rem;
-      }
     }
   }
 }
-
