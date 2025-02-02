@@ -35,6 +35,7 @@ const NavItems: React.FC = () => {
                           lg: '1.1rem',
                           xl: '1.5rem',
                         },
+                        fontWeight: 500,
                         margin: { md: '0.5rem', lg: '1rem', xl: '1rem' },
                       },
                     },
