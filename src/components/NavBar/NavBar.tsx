@@ -4,11 +4,11 @@ import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
 import GradientText from '../gradienttext/GradientText';
 
-interface NavBarProps {
+interface INavBarProps {
   toggleTheme?: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = () => {
+const NavBar: React.FC<INavBarProps> = () => {
   return (
     <AppBar className="nav-bar" position="static" elevation={0}>
       <Toolbar className="nav-bar__toolbar" disableGutters>
