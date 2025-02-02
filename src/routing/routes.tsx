@@ -5,6 +5,7 @@ import Contact from '@pages/Contact';
 import Home from '@pages/Home';
 import Tags from '@pages/Tags';
 import Courses from '@pages/Courses';
+import { JSX } from 'react';
 
 const TagsPage = () => {
   const { id } = useParams();
@@ -16,13 +17,22 @@ const TagsPage = () => {
   );
 };
 
-const routes = [
-  { path: '/', element: <Home />, name: 'Home' },
+interface RouteType {
+  path: string;
+  element: JSX.Element;
+  name: string;
+  hidden?: boolean;
+}
+
+const routes: RouteType[] = [
+  { path: '/', element: <Home />, name: 'Home', hidden: true },
   { path: '/articles', element: <Articles />, name: 'Articles' },
   { path: '/tags', element: <Tags />, name: 'Tags' },
   { path: '/tags/:id', element: <TagsPage />, name: 'TagsPage', hidden: true },
   { path: '/courses', element: <Courses />, name: 'Courses' },
-  { path: '/contact', element: <Contact />, name: 'Contact' },
+  { path: '/contact', element: <Contact />, name: 'Contact', hidden: true },
 ];
+
+export type { RouteType };
 
 export default routes;

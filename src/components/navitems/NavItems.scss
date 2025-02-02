@@ -1,0 +1,16 @@
+@use '@scss/abstracts/variables' as var;
+@use '@scss/abstracts/fonts' as font;
+@use '@scss/abstracts/mixins' as mixin;
+
+.nav-items {
+  @include mixin.flex(row, center, center);
+
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &--active {
+    text-decoration: underline;
+  }
+}

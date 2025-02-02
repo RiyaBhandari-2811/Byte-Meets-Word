@@ -7,11 +7,17 @@ import '@fontsource/roboto/700.css';
 
 type GenerateTheme = () => Theme;
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xxl: true;
+  }
+}
+
 const generateTheme: GenerateTheme = () => {
   return createTheme({
     palette: {
       primary: {
-        main: getCssVariable('--tertiary'),
+        main: getCssVariable('--primary'),
       },
       secondary: {
         main: getCssVariable('--secondary'),
@@ -34,6 +40,16 @@ const generateTheme: GenerateTheme = () => {
       },
       body2: {
         fontWeight: 300,
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 400,
+        md: 768,
+        lg: 1024,
+        xl: 1440,
+        xxl: 1920,
       },
     },
   });

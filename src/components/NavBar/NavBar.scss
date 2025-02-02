@@ -1,0 +1,17 @@
+@use '@scss/abstracts/variables' as var;
+@use '@scss/abstracts/fonts' as font;
+@use '@scss/abstracts/mixins' as mixin;
+
+.nav-bar {
+  margin-top: 1rem;
+
+  &__toolbar {
+    @include mixin.flex(row, center, space-between);
+
+    &__title {
+      gap: 0.4rem;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}

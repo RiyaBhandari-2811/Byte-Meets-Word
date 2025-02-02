@@ -1,21 +1,26 @@
-/* Breakpoints */
-$breakpoint-xs: 0px; /* 0 to 599px */
-$breakpoint-sm: 600px; /* 600 to 899px */
-$breakpoint-md: 900px; /* 900 to 1199px */
-$breakpoint-lg: 1200px; /* 1200 to 1535px */
-$breakpoint-xl: 1536px; /* 1536 and beyond */
-
+// Breakpoints
+$breakpoint-xs: 0;
+$breakpoint-sm: 400px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1440px;
+$breakpoint-xxl: 1920px;
 $breakpoints: (
-  /* 0 to 599px */ xs: '(max-width: #{($breakpoint-sm - 1)})',
+  // 0 to 399px
+  xs: '(max-width: #{($breakpoint-sm - 1)})',
 
-  /* 600px to 899px */
+  // 400px to 767px
   sm: '(min-width: #{$breakpoint-sm}) and (max-width: #{($breakpoint-md - 1)})',
 
-  /* 900px to 1199px */
+  // 768px to 1023px
   md: '(min-width: #{$breakpoint-md}) and (max-width: #{($breakpoint-lg - 1)})',
 
-  /* 1200px to 1535px */
+  // 1024px to 1439px
   lg: '(min-width: #{$breakpoint-lg}) and (max-width: #{($breakpoint-xl - 1)})',
 
-  /* 1536px and beyond */ xl: '(min-width: #{$breakpoint-xl})'
+  // 1440px to 1919px
+  xl: '(min-width: #{$breakpoint-xl})',
+
+  // 1920px and above
+  xxl: '(min-width: #{$breakpoint-xxl})'
 );
