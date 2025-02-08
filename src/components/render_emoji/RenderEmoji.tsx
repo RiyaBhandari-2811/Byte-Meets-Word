@@ -1,12 +1,19 @@
+import { Box } from '@mui/material';
+
 interface IRenderEmojiProps {
   code: number;
 }
 
 const RenderEmoji: React.FC<IRenderEmojiProps> = ({ code }) => {
   return (
-    <span role="img" aria-label={'jsx-a11y/accessible-emoji'}>
+    <Box
+      component="span"
+      role="img"
+      aria-label={'jsx-a11y/accessible-emoji'}
+      sx={{ fontSize: '1.5rem' }}
+    >
       {String.fromCodePoint(code)}
-    </span>
+    </Box>
   );
 };
 

@@ -1,11 +1,11 @@
 import { Box, Stack, Typography } from '@mui/material';
 import RenderEmoji from '../render_emoji/RenderEmoji';
-import GradientText from '../gradient_text/GradientText';
 import XIcon from '@mui/icons-material/X';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import WesternMan from '@assets/WesternMan.svg';
+import Heading from '../heading/Heading';
 
 const HeroBanner = () => {
   return (
@@ -20,22 +20,15 @@ const HeroBanner = () => {
         alignItems={{ xs: 'center', md: 'start' }}
         spacing={3}
       >
-        <Typography
-          sx={{
-            fontSize: {
-              xs: '1rem',
-              sm: '1rem',
-              md: '1.5rem',
-              lg: '2rem',
-              xl: '2.5rem',
-            },
-            fontWeight: 'fontWeightBold',
-            letterSpacing: '0.1rem',
-          }}
+        <Stack
+          direction={'row'}
+          alignItems={'center'}
+          justifyContent={'center'}
         >
-          Hi there, I'm <GradientText text="Riya" />
+          <Heading title={`Hi there, I'm `} gradientTitle={'Riya'} />
           <RenderEmoji code={0x1f44b} />
-        </Typography>
+        </Stack>
+
         <Typography
           sx={{
             fontSize: '1rem',
@@ -51,11 +44,16 @@ const HeroBanner = () => {
           enim animi esse exercitationem et adipisci, optio error quisquam
           suscipit? Mollitia, doloremque.
         </Typography>
-        <Stack direction={'row'} spacing={3}>
-          <XIcon />
-          <FacebookIcon />
-          <LinkedInIcon />
-          <YouTubeIcon />
+        <Stack
+          direction={'row'}
+          spacing={4}
+          alignItems={'center'}
+          justifyContent={'center'}
+        >
+          <XIcon sx={{ fontSize: '30px' }} />
+          <FacebookIcon sx={{ fontSize: '35px' }} />
+          <LinkedInIcon sx={{ fontSize: '35px' }} />
+          <YouTubeIcon sx={{ fontSize: '45px' }} />
         </Stack>
       </Stack>
       <Box>
