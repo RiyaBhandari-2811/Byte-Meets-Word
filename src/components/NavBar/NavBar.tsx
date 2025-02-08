@@ -2,7 +2,7 @@ import { AppBar, Stack, Toolbar, Typography } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
-import GradientText from '../gradienttext/GradientText';
+import GradientText from '../gradient_text/GradientText';
 
 interface INavBarProps {
   toggleTheme?: () => void;
