@@ -29,14 +29,14 @@ const NavItems: React.FC = () => {
                     primary: {
                       sx: {
                         fontSize: {
-                          xs: '0.7rem',
+                          xs: '0.9rem',
                           sm: '1rem',
-                          md: '1rem',
+                          md: '1.1rem',
                           lg: '1.1rem',
                           xl: '1.5rem',
                         },
                         fontWeight: 500,
-                        margin: { md: '0.5rem', lg: '1rem', xl: '1rem' },
+                        margin: { md: '1.5rem', lg: '1rem', xl: '1rem' },
                       },
                     },
                   }}

@@ -22,7 +22,7 @@ const NavBar: React.FC<INavBarProps> = () => {
             className="nav-bar__title-logo"
             sx={{
               width: {
-                xs: '1rem',
+                xs: '1.3rem',
                 sm: '1.5rem',
                 md: '2rem',
                 lg: '2.5rem',
@@ -35,7 +35,7 @@ const NavBar: React.FC<INavBarProps> = () => {
             className="nav-bar__title-text"
             sx={{
               fontSize: {
-                xs: '0.7rem',
+                xs: '0.9rem',
                 sm: '1rem',
                 md: '1rem',
                 lg: '1.2rem',
