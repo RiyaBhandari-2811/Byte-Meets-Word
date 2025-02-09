@@ -5,6 +5,7 @@ import { Box, Container, Stack, ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import './Layout.scss';
+import Newsletter from '@/components/newsletter/Newsletter';
 
 const Layout: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
@@ -37,6 +38,7 @@ const Layout: React.FC = () => {
           <Box component="main" className="layout__content">
             <Outlet />
           </Box>
+          <Newsletter />
           <Footer />
         </Stack>
       </Container>
