@@ -1,5 +1,5 @@
-import Footer from '@/components/footer/Footer';
-import NavBar from '@/components/navbar/NavBar';
+import Footer from '@/components/Footer/Footer';
+import NavBar from '@/components/NavBar/NavBar';
 import generateTheme from '@/utils/theme';
 import { Box, Container, Stack, ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -19,7 +19,19 @@ const Layout: React.FC = () => {
 
   return (
     <ThemeProvider theme={generateTheme()}>
-      <Container sx={{ paddingLeft: { lg: '1rem', xl: '0px', xxl: '0px' } }}>
+      <Container
+        sx={{
+          paddingLeft: { lg: '1rem', xl: '0px', xxl: '0px' },
+          border: 3,
+          borderColor: {
+            xs: 'red',
+            sm: 'green',
+            md: 'yellow',
+            lg: 'blue',
+            xl: 'orange',
+          },
+        }}
+      >
         <Stack className="layout">
           <NavBar toggleTheme={toggleTheme} />
           <Box component="main" className="layout__content">

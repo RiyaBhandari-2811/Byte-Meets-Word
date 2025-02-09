@@ -1,0 +1,178 @@
+{
+  "contentRails": [
+    {
+      "title": "Latest Blog Posts",
+      "railItems": [
+        {
+          "id": "1",
+          "title": "The Future of Remote Work",
+          "subtitle": "Jan 10, 2024 - 6 min read",
+          "description": "As remote work becomes the norm, explore how businesses and employees can adapt.",
+          "image": "https://images.pexels.com/photos/158771/notebook-pen-table-blank-158771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+          "id": "2",
+          "title": "10 Productivity Hacks for Writers",
+          "subtitle": "Jan 15, 2024 - 5 min read",
+          "description": "Discover simple yet effective techniques to boost your writing efficiency.",
+          "image": "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+      ]
+    },
+    {
+      "title": "Tech & Innovation",
+      "railItems": [
+        {
+          "id": "1",
+          "title": "The Rise of AI in Content Creation",
+          "subtitle": "Feb 5, 2024 - 7 min read",
+          "description": "Explore how artificial intelligence is transforming the way we generate content online.",
+          "image": "https://images.unsplash.com/photo-1535982368253-05d640fe0755?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "2",
+          "title": "Blockchain Beyond Cryptocurrency",
+          "subtitle": "Feb 10, 2024 - 6 min read",
+          "description": "Learn how blockchain is revolutionizing industries beyond just Bitcoin and Ethereum.",
+          "image": "https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+          "id": "3",
+          "title": "Cybersecurity Trends in 2024",
+          "subtitle": "Feb 15, 2024 - 8 min read",
+          "description": "Stay ahead of digital threats with these essential cybersecurity practices.",
+          "image": "https://cdn.pixabay.com/photo/2015/06/24/15/45/laptop-820274_1280.jpg"
+        },
+        {
+          "id": "4",
+          "title": "The Role of Quantum Computing in AI",
+          "subtitle": "Feb 20, 2024 - 10 min read",
+          "description": "Quantum computing is pushing AI boundaries—find out what the future holds.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "5",
+          "title": "5G and the Future of Connectivity",
+          "subtitle": "Feb 25, 2024 - 5 min read",
+          "description": "How will 5G impact the world? Here's what you need to know about the next-gen network.",
+          "image": "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+      ]
+    },
+    {
+      "title": "Health & Wellness",
+      "railItems": [
+        {
+          "id": "1",
+          "title": "The Science of Sleep: How to Rest Better",
+          "subtitle": "Mar 1, 2024 - 7 min read",
+          "description": "Understanding sleep cycles can dramatically improve your energy levels and focus.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "2",
+          "title": "10 Superfoods for a Healthier Life",
+          "subtitle": "Mar 5, 2024 - 6 min read",
+          "description": "Boost your nutrition with these powerhouse foods packed with vitamins and minerals.",
+          "image": "https://images.unsplash.com/photo-1535982368253-05d640fe0755?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "3",
+          "title": "Mindfulness Techniques for Stress Relief",
+          "subtitle": "Mar 10, 2024 - 5 min read",
+          "description": "Learn simple but powerful mindfulness exercises to ease daily stress and anxiety.",
+          "image": "https://images.pexels.com/photos/158771/notebook-pen-table-blank-158771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+          "id": "4",
+          "title": "The Truth About Intermittent Fasting",
+          "subtitle": "Mar 15, 2024 - 9 min read",
+          "description": "Does intermittent fasting really work? We break down the science behind it.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "5",
+          "title": "How to Stay Active While Working Remotely",
+          "subtitle": "Mar 20, 2024 - 7 min read",
+          "description": "Avoid the dangers of a sedentary lifestyle with these at-home fitness tips.",
+          "image": "https://images.unsplash.com/photo-1535982368253-05d640fe0755?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "6",
+          "title": "Hydration Myths Debunked",
+          "subtitle": "Mar 25, 2024 - 6 min read",
+          "description": "How much water should you really drink? The answer might surprise you!",
+          "image": "https://images.pexels.com/photos/158771/notebook-pen-table-blank-158771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+          "id": "7",
+          "title": "The Benefits of Cold Showers",
+          "subtitle": "Mar 30, 2024 - 8 min read",
+          "description": "Cold showers are more than just a shock—they have real health benefits. Find out why!",
+          "image": "https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        }
+      ]
+    },
+    {
+      "title": "Travel & Adventure",
+      "railItems": [
+        {
+          "id": "1",
+          "title": "Top 10 Destinations for 2024",
+          "subtitle": "Apr 1, 2024 - 6 min read",
+          "description": "From beaches to mountains, discover the hottest travel spots for 2024.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "2",
+          "title": "How to Travel on a Budget",
+          "subtitle": "Apr 5, 2024 - 7 min read",
+          "description": "Traveling doesn’t have to be expensive—here’s how to explore the world on a budget.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "3",
+          "title": "Solo Travel: Pros and Cons",
+          "subtitle": "Apr 10, 2024 - 5 min read",
+          "description": "Thinking about traveling alone? Here are the benefits and challenges of solo adventures.",
+          "image": "https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+          "id": "4",
+          "title": "The Best Travel Apps You Need",
+          "subtitle": "Apr 15, 2024 - 4 min read",
+          "description": "Make your trips smoother with these must-have travel apps.",
+          "image": "https://images.pexels.com/photos/158771/notebook-pen-table-blank-158771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        },
+        {
+          "id": "5",
+          "title": "Packing Hacks for Every Trip",
+          "subtitle": "Apr 20, 2024 - 6 min read",
+          "description": "Maximize space and minimize stress with these expert packing tips.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "6",
+          "title": "Hidden Gems: Underrated Travel Spots",
+          "subtitle": "Apr 25, 2024 - 8 min read",
+          "description": "Skip the tourist traps and discover these off-the-beaten-path destinations.",
+          "image": "https://images.unsplash.com/photo-1529676468696-f3a47aba7d5d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "7",
+          "title": "Eco-Friendly Travel Tips",
+          "subtitle": "Apr 30, 2024 - 5 min read",
+          "description": "Reduce your carbon footprint while exploring the world with these simple eco-travel tips.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+          "id": "8",
+          "title": "Best Travel Credit Cards for Rewards",
+          "subtitle": "May 5, 2024 - 7 min read",
+          "description": "Earn free flights, hotel stays, and more with the best travel credit cards.",
+          "image": "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+      ]
+    }
+  ]
+}
