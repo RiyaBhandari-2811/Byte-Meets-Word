@@ -23,14 +23,14 @@ const Layout: React.FC = () => {
       <Container
         sx={{
           paddingLeft: { lg: '1rem', xl: '0px', xxl: '0px' },
-          border: 3,
-          borderColor: {
-            xs: 'red',
-            sm: 'green',
-            md: 'yellow',
-            lg: 'blue',
-            xl: 'orange',
-          },
+          // border: 3,
+          // borderColor: {
+          //   xs: 'red',
+          //   sm: 'green',
+          //   md: 'yellow',
+          //   lg: 'blue',
+          //   xl: 'orange',
+          // },
         }}
       >
         <Stack className="layout">
