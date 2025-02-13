@@ -4,12 +4,14 @@ import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
 import GradientText from '../gradient_text/GradientText';
 import GradientIcon from '../gradient_icon/GradientIcon';
+import { NavigateFunction } from 'react-router-dom';
 
 interface INavBarProps {
   toggleTheme?: () => void;
 }
 
 const NavBar: React.FC<INavBarProps> = () => {
+  const routeTo: NavigateFunction = navigateToRoute();
   return (
     <AppBar className="nav-bar" position="static" elevation={0}>
       <Toolbar className="nav-bar__toolbar" disableGutters>
@@ -18,6 +20,7 @@ const NavBar: React.FC<INavBarProps> = () => {
           direction="row"
           justifyContent={'center'}
           alignItems={'center'}
+          onClick={() => routeTo('/')}
         >
           <GradientIcon Icon={AdbIcon} gradientId={'logo'} />
           <Typography
@@ -43,3 +46,6 @@ const NavBar: React.FC<INavBarProps> = () => {
 };
 
 export default NavBar;
+function navigateToRoute(): NavigateFunction {
+  throw new Error('Function not implemented.');
+}

@@ -23,7 +23,9 @@ const NavItems: React.FC = () => {
                 <ListItemText
                   primary={name}
                   className={`nav-items__button-text ${
-                    location.pathname === path ? 'nav-items--active' : ''
+                    location.pathname === path
+                      ? 'nav-items__button-text--active'
+                      : ''
                   }`}
                   slotProps={{
                     primary: {
