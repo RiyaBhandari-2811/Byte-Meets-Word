@@ -3,6 +3,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
 import GradientText from '../gradient_text/GradientText';
+import GradientIcon from '../gradient_icon/GradientIcon';
 
 interface INavBarProps {
   toggleTheme?: () => void;
@@ -18,18 +19,7 @@ const NavBar: React.FC<INavBarProps> = () => {
           justifyContent={'center'}
           alignItems={'center'}
         >
-          <AdbIcon
-            className="nav-bar__title-logo"
-            sx={{
-              width: {
-                xs: '1.3rem',
-                sm: '1.5rem',
-                md: '2rem',
-                lg: '2.5rem',
-                xl: '3rem',
-              },
-            }}
-          />
+          <GradientIcon Icon={AdbIcon} gradientId={'logo'} />
           <Typography
             component="a"
             className="nav-bar__title-text"
