@@ -4,7 +4,7 @@ import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
 import GradientText from '../gradient_text/GradientText';
 import GradientIcon from '../gradient_icon/GradientIcon';
-import { NavigateFunction } from 'react-router-dom';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
 interface INavBarProps {
   toggleTheme?: () => void;
@@ -46,6 +46,3 @@ const NavBar: React.FC<INavBarProps> = () => {
 };
 
 export default NavBar;
-function navigateToRoute(): NavigateFunction {
-  throw new Error('Function not implemented.');
-}

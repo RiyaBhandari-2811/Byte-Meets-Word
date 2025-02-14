@@ -1,0 +1,12 @@
+.social-handles-icon {
+  border: none;
+  background: transparent !important;
+  overflow: hidden;
+  transition: filter 0.4s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background: transparent !important;
+    filter: drop-shadow(0 0 20px rgb(52 152 219 / 80%));
+  }
+}
