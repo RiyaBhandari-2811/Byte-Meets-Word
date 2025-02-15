@@ -5,10 +5,10 @@
 .nav-bar {
   margin-top: 1rem;
 
-  &__toolbar {
+  &-toolbar {
     @include mixin.flex(row, center, space-between);
 
-    &__title {
+    &-title {
       gap: 0.4rem;
       cursor: pointer;
       user-select: none;
