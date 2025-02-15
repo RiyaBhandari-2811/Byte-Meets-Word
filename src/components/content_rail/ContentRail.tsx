@@ -29,7 +29,7 @@ const ContentRail: React.FC<IContentRailProps> = ({ rails }) => {
         return (
           <Stack
             key={index}
-            gap={2}
+            gap={5}
             sx={{ marginBottom: '20px' }}
             alignItems={{
               xs: 'centre',
