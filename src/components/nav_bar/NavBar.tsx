@@ -3,36 +3,29 @@ import AdbIcon from '@mui/icons-material/Adb';
 import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
 import GradientText from '../gradient_text/GradientText';
+import GradientIcon from '../gradient_icon/GradientIcon';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
 interface INavBarProps {
   toggleTheme?: () => void;
 }
 
 const NavBar: React.FC<INavBarProps> = () => {
+  const routeTo: NavigateFunction = navigateToRoute();
   return (
     <AppBar className="nav-bar" position="static" elevation={0}>
-      <Toolbar className="nav-bar__toolbar" disableGutters>
+      <Toolbar className="nav-bar-toolbar" disableGutters>
         <Stack
-          className="nav-bar__toolbar__title"
+          className="nav-bar-toolbar-title"
           direction="row"
-          justifyContent={'center'}
-          alignItems={'center'}
+          justifyContent="center"
+          alignItems="center"
+          onClick={() => routeTo('/')}
         >
-          <AdbIcon
-            className="nav-bar__title-logo"
-            sx={{
-              width: {
-                xs: '1.3rem',
-                sm: '1.5rem',
-                md: '2rem',
-                lg: '2.5rem',
-                xl: '3rem',
-              },
-            }}
-          />
+          <GradientIcon Icon={AdbIcon} gradientId="logo" />
           <Typography
             component="a"
-            className="nav-bar__title-text"
+            className="nav-bar-title-text"
             sx={{
               fontSize: {
                 xs: '0.9rem',
@@ -43,7 +36,7 @@ const NavBar: React.FC<INavBarProps> = () => {
               },
             }}
           >
-            <GradientText text={"Riya's Blog"} />
+            <GradientText text="Riya's Blog" />
           </Typography>
         </Stack>
         <NavItems />

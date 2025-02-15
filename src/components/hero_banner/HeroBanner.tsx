@@ -1,11 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 import RenderEmoji from '../render_emoji/RenderEmoji';
-import XIcon from '@mui/icons-material/X';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import WesternMan from '@assets/img/WesternMan.svg';
 import Heading from '../heading/Heading';
+import SocialHandles from '../social_handles/SocialHandles';
 
 const HeroBanner = () => {
   return (
@@ -44,17 +41,7 @@ const HeroBanner = () => {
           enim animi esse exercitationem et adipisci, optio error quisquam
           suscipit? Mollitia, doloremque.
         </Typography>
-        <Stack
-          direction={'row'}
-          spacing={4}
-          alignItems={'center'}
-          justifyContent={'center'}
-        >
-          <XIcon sx={{ fontSize: '30px' }} />
-          <FacebookIcon sx={{ fontSize: '35px' }} />
-          <LinkedInIcon sx={{ fontSize: '35px' }} />
-          <YouTubeIcon sx={{ fontSize: '45px' }} />
-        </Stack>
+        <SocialHandles />
       </Stack>
       <Box>
         <img src={WesternMan} width={200} />

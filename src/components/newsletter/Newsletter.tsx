@@ -51,13 +51,21 @@ const Newsletter: React.FC = () => {
         gap={2}
       >
         <Heading title={'Subscribe to my Newsletters'} />
-        <Typography component={'span'}>
+        <Typography
+          sx={{
+            fontSize: {
+              xs: '0.7rem',
+              sm: '1rem',
+            },
+          }}
+          component={'span'}
+        >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo
           commodi natus incidunt blanditiis assumenda, enim repudiandae labore
           iusto nam ullam.
         </Typography>
       </Stack>
-      <Stack width={{ xs: '60%', sm: '60%', md: '50%' }}>
+      <Stack width={{ xs: '100%', sm: '100%', md: '50%' }}>
         <StyledTextField
           variant="outlined"
           placeholder="Enter your Email"

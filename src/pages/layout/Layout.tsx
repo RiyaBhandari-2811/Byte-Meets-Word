@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer/Footer';
-import NavBar from '@/components/NavBar/NavBar';
+import Footer from '@/components/footer/Footer';
+import NavBar from '@/components/nav_bar/NavBar';
 import generateTheme from '@/utils/theme';
 import { Box, Container, Stack, ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
