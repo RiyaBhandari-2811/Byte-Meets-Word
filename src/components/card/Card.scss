@@ -1,0 +1,9 @@
+@use '@scss/abstracts/mixins' as mixin;
+
+.card-title {
+  @include mixin.line-clamp(2);
+}
+
+.card-description {
+  @include mixin.line-clamp;
+}

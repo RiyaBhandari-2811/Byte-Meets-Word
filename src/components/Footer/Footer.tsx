@@ -1,5 +1,4 @@
 import { Divider, Stack, Typography } from '@mui/material';
-import RenderEmoji from '../render_emoji/RenderEmoji';
 import SocialHandles from '../social_handles/SocialHandles';
 
 const Footer = () => {
@@ -27,9 +26,17 @@ const Footer = () => {
         flexWrap={'wrap'}
         gap={2}
       >
-        <Typography>
-          © Copyright {new Date().getFullYear()} by Riya's Blog. <br />
-          Built with <RenderEmoji code={0x1f9e1} /> by Riya Bhandari
+        <Typography
+          sx={{
+            fontSize: {
+              xs: '0.7rem',
+              sm: '0.8rem',
+            },
+            fontWeight: 'light',
+          }}
+        >
+          © Copyright {new Date().getFullYear()} by Riya's Blog. Built with ❤️
+          by Riya Bhandari
         </Typography>
         <SocialHandles />
       </Stack>

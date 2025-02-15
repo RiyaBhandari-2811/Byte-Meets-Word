@@ -5,6 +5,7 @@ import {
   Typography,
 } from '@mui/material';
 import MUICard from '@mui/material/Card';
+import './Card.scss';
 
 interface ICardProps {
   id: string;
@@ -26,16 +27,30 @@ const Card: React.FC<ICardProps> = ({
       key={id}
       className="card"
       sx={{
-        width: '250px',
-        height: '350px',
+        width: {
+          xs: '300px',
+          lg: '250px',
+        },
+        height: {
+          xs: '400px',
+          lg: '350px',
+        },
         backgroundColor: 'rgba(30, 41, 59, 1)',
         color: 'white',
         borderRadius: '20px',
+        transition: 'box-shadow 0.3s ease-in-out',
+        '&:hover': {
+          boxShadow: '0 0 10px rgb(52 152 219 / 80%)',
+        },
+        '& .MuiCardActionArea-focusHighlight': {
+          display: 'none',
+        },
       }}
     >
       <CardActionArea
-        disableRipple
-        disableTouchRipple
+        disableRipple={true}
+        disableTouchRipple={true}
+        className="card__action-area"
         sx={{
           height: '100%',
         }}
@@ -45,21 +60,25 @@ const Card: React.FC<ICardProps> = ({
           alt={title}
           image={image}
           height={'50%'}
+          className="card__media"
           sx={{
             objectFit: 'cover',
           }}
         />
         <CardContent
+          className="card__content"
           sx={{
-            height: '50%',
+            height: '45%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'space-evenly',
+            justifyContent: 'space-around',
             padding: '10px',
+            textAlign: 'center',
           }}
         >
           <Typography
+            className="card-title"
             sx={{
               fontSize: '15px',
               fontWeight: 'fontWeightBold',
@@ -69,6 +88,7 @@ const Card: React.FC<ICardProps> = ({
           </Typography>
 
           <Typography
+            className="card-description"
             sx={{
               fontSize: '12px',
               fontWeight: 'fontWeightRegular',
@@ -77,6 +97,7 @@ const Card: React.FC<ICardProps> = ({
             {description}
           </Typography>
           <Typography
+            className="card__subtitle"
             sx={{
               fontSize: '11px',
               fontWeight: 'fontWeightRegular',

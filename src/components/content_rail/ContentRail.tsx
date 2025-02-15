@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography, useMediaQuery } from '@mui/material';
 import Heading from '../heading/Heading';
 import Card from '../card/Card';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
@@ -21,6 +21,8 @@ interface IContentRailProps {
 }
 
 const ContentRail: React.FC<IContentRailProps> = ({ rails }) => {
+  const isSm400to550 = useMediaQuery('(min-width:400px) and (max-width:550px)');
+
   return (
     <Box sx={{ width: '100%' }}>
       {rails.map((rail, index) => {
@@ -95,30 +97,23 @@ const ContentRail: React.FC<IContentRailProps> = ({ rails }) => {
               sx={{ width: '100%' }}
               direction={{
                 xs: 'column',
-                sm: 'column',
+                sm: 'row',
                 md: 'row',
                 lg: 'row',
                 xl: 'row',
               }}
               flexWrap={'wrap'}
               gap={3}
-              alignContent={{
-                xs: 'center',
-                sm: 'center',
-                md: 'flex-start',
-                lg: 'flex-start',
-                xl: 'flex-start',
-              }}
               justifyContent={{
                 xs: 'center',
-                sm: 'center',
+                sm: isSm400to550 ? 'centre' : 'flex-start',
                 md: 'flex-start',
                 lg: 'flex-start',
                 xl: 'flex-start',
               }}
               alignItems={{
                 xs: 'center',
-                sm: 'center',
+                sm: 'flex-start',
                 md: 'flex-start',
                 lg: 'flex-start',
                 xl: 'flex-start',
