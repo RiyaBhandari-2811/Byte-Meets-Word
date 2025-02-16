@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Articles from '@pages/Articles';
 import Contact from '@pages/Contact';
 import Home from '@pages/Home';
-import Tags from '@pages/Tags';
+import Tags from '@/pages/tags/Tags';
 import Courses from '@pages/Courses';
 import { JSX } from 'react';
 
