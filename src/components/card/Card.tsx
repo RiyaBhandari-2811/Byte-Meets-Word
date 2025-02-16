@@ -29,7 +29,7 @@ const Card: React.FC<ICardProps> = ({
       sx={{
         width: {
           xs: '300px',
-          lg: '250px',
+          lg: '300px',
         },
         height: {
           xs: '400px',
@@ -37,6 +37,7 @@ const Card: React.FC<ICardProps> = ({
         },
         backgroundColor: 'rgba(30, 41, 59, 1)',
         color: 'white',
+        border: '1.5px solid rgb(52 152 219 / 80%)',
         borderRadius: '20px',
         transition: 'box-shadow 0.3s ease-in-out',
         '&:hover': {

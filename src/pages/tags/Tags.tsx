@@ -16,7 +16,7 @@ const Tags: React.FC = () => {
         {tagsJson.tags.map((tag: { name: string }) => (
           <Button
             sx={{
-              border: '1px solid white',
+              border: '1.5px solid rgb(52 152 219 / 80%)',
               borderRadius: '10px',
               backgroundColor: 'transparent',
               color: 'white',
