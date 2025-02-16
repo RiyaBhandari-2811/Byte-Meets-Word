@@ -1,7 +1,7 @@
 import routes, { RouteType } from '@/routing/routes';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
-import React from 'react';
+
 import './NavItems.scss';
 import { useLocation } from 'react-router';
 

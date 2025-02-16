@@ -1,11 +1,11 @@
-import Footer from '@/components/footer/Footer';
-import NavBar from '@/components/nav_bar/NavBar';
+import Footer from '@components/footer/Footer';
+import NavBar from '@components/nav_bar/NavBar';
 import generateTheme from '@/utils/theme';
 import { Box, Container, Stack, ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import './Layout.scss';
-import Newsletter from '@/components/newsletter/Newsletter';
+import Newsletter from '@components/newsletter/Newsletter';
 
 const Layout: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
