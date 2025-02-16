@@ -13,13 +13,16 @@ const SocialHandles = () => {
       justifyContent={'center'}
       className="social-handles__container"
     >
-      {SOCIALS.map(({ Icon, color, link, size }: ISocialMedia) => (
-        <Icon
-          sx={{ color, fontSize: size }}
-          onClick={() => routeTo(link)}
-          className="social-handles-icon"
-        />
-      ))}
+      {SOCIALS.map(
+        ({ Icon, color, link, size }: ISocialMedia, index: number) => (
+          <Icon
+            key={index}
+            sx={{ color, fontSize: size }}
+            onClick={() => routeTo(link)}
+            className="social-handles-icon"
+          />
+        )
+      )}
     </Stack>
   );
 };
