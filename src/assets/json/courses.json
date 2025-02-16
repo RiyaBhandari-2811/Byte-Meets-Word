@@ -1,0 +1,140 @@
+{
+  "courses": [
+    {
+      "title": "Introduction to Python Programming",
+      "image": "https://img.youtube.com/vi/kqtD5dpn9C8/maxresdefault.jpg",
+      "description": "Learn the basics of Python programming in this beginner-friendly tutorial.",
+      "date_of_upload": "2023-06-15",
+      "duration": "45:32",
+      "youtube_link": "https://www.youtube.com/watch?v=kqtD5dpn9C8"
+    },
+    {
+      "title": "Web Development with HTML, CSS, and JavaScript",
+      "image": "https://img.youtube.com/vi/mU6anWqZJcc/maxresdefault.jpg",
+      "description": "A complete guide to building websites using HTML, CSS, and JavaScript.",
+      "date_of_upload": "2023-07-20",
+      "duration": "1:12:45",
+      "youtube_link": "https://www.youtube.com/watch?v=mU6anWqZJcc"
+    },
+    {
+      "title": "ReactJS Crash Course for Beginners",
+      "image": "https://img.youtube.com/vi/bMknfKXIFA8/maxresdefault.jpg",
+      "description": "A beginner's guide to ReactJS covering components, state, and props.",
+      "date_of_upload": "2023-08-10",
+      "duration": "55:23",
+      "youtube_link": "https://www.youtube.com/watch?v=bMknfKXIFA8"
+    },
+    {
+      "title": "Machine Learning Basics with Python",
+      "image": "https://img.youtube.com/vi/GwIo3gDZCVQ/maxresdefault.jpg",
+      "description": "Understand the fundamentals of machine learning using Python libraries.",
+      "date_of_upload": "2023-09-05",
+      "duration": "1:30:15",
+      "youtube_link": "https://www.youtube.com/watch?v=GwIo3gDZCVQ"
+    },
+    {
+      "title": "Django Full Course - Build a Web App",
+      "image": "https://img.youtube.com/vi/F5mRW0jo-U4/maxresdefault.jpg",
+      "description": "Learn how to create a web application using Django framework.",
+      "date_of_upload": "2023-10-12",
+      "duration": "2:05:47",
+      "youtube_link": "https://www.youtube.com/watch?v=F5mRW0jo-U4"
+    },
+    {
+      "title": "JavaScript Fundamentals - Complete Guide",
+      "image": "https://img.youtube.com/vi/W6NZfCO5SIk/maxresdefault.jpg",
+      "description": "A comprehensive guide to JavaScript, covering variables, functions, and more.",
+      "date_of_upload": "2023-11-01",
+      "duration": "1:45:30",
+      "youtube_link": "https://www.youtube.com/watch?v=W6NZfCO5SIk"
+    },
+    {
+      "title": "Node.js & Express.js Crash Course",
+      "image": "https://img.youtube.com/vi/Oe421EPjeBE/maxresdefault.jpg",
+      "description": "Learn how to build server-side applications using Node.js and Express.js.",
+      "date_of_upload": "2023-12-10",
+      "duration": "50:20",
+      "youtube_link": "https://www.youtube.com/watch?v=Oe421EPjeBE"
+    },
+    {
+      "title": "Vue.js Crash Course",
+      "image": "https://img.youtube.com/vi/FXpIoQ_rT_c/maxresdefault.jpg",
+      "description": "Learn Vue.js from scratch with this hands-on guide.",
+      "date_of_upload": "2024-02-01",
+      "duration": "1:00:10",
+      "youtube_link": "https://www.youtube.com/watch?v=FXpIoQ_rT_c"
+    },
+    {
+      "title": "Angular Full Course - Learn Angular Step by Step",
+      "image": "https://img.youtube.com/vi/k5E2AVpwsko/maxresdefault.jpg",
+      "description": "A complete Angular tutorial covering components, modules, and routing.",
+      "date_of_upload": "2024-03-05",
+      "duration": "2:10:30",
+      "youtube_link": "https://www.youtube.com/watch?v=k5E2AVpwsko"
+    },
+    {
+      "title": "C++ Programming Crash Course",
+      "image": "https://img.youtube.com/vi/ZzaPdXTrSb8/maxresdefault.jpg",
+      "description": "Get started with C++ programming with this beginner-friendly tutorial.",
+      "date_of_upload": "2024-04-02",
+      "duration": "1:30:25",
+      "youtube_link": "https://www.youtube.com/watch?v=ZzaPdXTrSb8"
+    },
+    {
+      "title": "SQL & Database Management Basics",
+      "image": "https://img.youtube.com/vi/7S_tz1z_5bA/maxresdefault.jpg",
+      "description": "Learn SQL and database management from scratch.",
+      "date_of_upload": "2024-04-18",
+      "duration": "2:00:45",
+      "youtube_link": "https://www.youtube.com/watch?v=7S_tz1z_5bA"
+    },
+    {
+      "title": "Bootstrap 5 Crash Course",
+      "image": "https://img.youtube.com/vi/-qfEOE4vtxE/maxresdefault.jpg",
+      "description": "A complete tutorial on Bootstrap 5 for responsive web design.",
+      "date_of_upload": "2024-05-01",
+      "duration": "1:10:30",
+      "youtube_link": "https://www.youtube.com/watch?v=-qfEOE4vtxE"
+    },
+    {
+      "title": "Git & GitHub Crash Course",
+      "image": "https://img.youtube.com/vi/RGOj5yH7evk/maxresdefault.jpg",
+      "description": "Master version control using Git and GitHub.",
+      "date_of_upload": "2024-05-10",
+      "duration": "50:10",
+      "youtube_link": "https://www.youtube.com/watch?v=RGOj5yH7evk"
+    },
+    {
+      "title": "Flutter Full Course - Build Apps for Android & iOS",
+      "image": "https://img.youtube.com/vi/VPvVD8t02U8/maxresdefault.jpg",
+      "description": "Learn how to build cross-platform mobile apps with Flutter.",
+      "date_of_upload": "2024-05-15",
+      "duration": "3:05:40",
+      "youtube_link": "https://www.youtube.com/watch?v=VPvVD8t02U8"
+    },
+    {
+      "title": "Kotlin for Android Development",
+      "image": "https://img.youtube.com/vi/F9UC9DY-vIU/maxresdefault.jpg",
+      "description": "Learn Kotlin and build Android applications.",
+      "date_of_upload": "2024-05-20",
+      "duration": "1:45:55",
+      "youtube_link": "https://www.youtube.com/watch?v=F9UC9DY-vIU"
+    },
+    {
+      "title": "Swift for iOS Development",
+      "image": "https://img.youtube.com/vi/comQ1-x2a1Q/maxresdefault.jpg",
+      "description": "Get started with Swift programming for iOS app development.",
+      "date_of_upload": "2024-05-25",
+      "duration": "2:20:00",
+      "youtube_link": "https://www.youtube.com/watch?v=comQ1-x2a1Q"
+    },
+    {
+      "title": "Cybersecurity Essentials",
+      "image": "https://img.youtube.com/vi/3Kq1MIfTWCE/maxresdefault.jpg",
+      "description": "Learn the fundamentals of cybersecurity and ethical hacking.",
+      "date_of_upload": "2024-06-01",
+      "duration": "1:35:20",
+      "youtube_link": "https://www.youtube.com/watch?v=3Kq1MIfTWCE"
+    }
+  ]
+}
