@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import Articles from '@pages/Articles';
+import Articles from '@/pages/articles/Articles';
 import Contact from '@pages/Contact';
 import Home from '@pages/Home';
 import Tags from '@/pages/tags/Tags';
