@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import MUICard from '@mui/material/Card';
 import './Card.scss';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
 interface ICardProps {
   id: string;
@@ -22,6 +23,7 @@ const Card: React.FC<ICardProps> = ({
   description,
   image,
 }) => {
+  const routeTo: NavigateFunction = navigateToRoute();
   return (
     <MUICard
       key={id}
@@ -55,6 +57,7 @@ const Card: React.FC<ICardProps> = ({
         sx={{
           height: '100%',
         }}
+        onClick={() => routeTo(`articles/${id}`)}
       >
         <CardMedia
           component="img"
