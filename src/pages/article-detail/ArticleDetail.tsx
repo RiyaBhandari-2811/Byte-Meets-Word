@@ -133,4 +133,6 @@ const ArticleDetail: React.FC = () => {
         {parse(articleData.main_content, { replace: transform })}
       </Typography>
     </Stack>
+  );
+};
 export default ArticleDetail;
