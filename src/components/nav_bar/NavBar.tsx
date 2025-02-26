@@ -1,9 +1,8 @@
 import { AppBar, Stack, Toolbar, Typography } from '@mui/material';
-import AdbIcon from '@mui/icons-material/Adb';
 import './NavBar.scss';
 import NavItems from '../navitems/NavItems';
 import GradientText from '../gradient_text/GradientText';
-import GradientIcon from '../gradient_icon/GradientIcon';
+import logo from '@assets/img/digital-transformation.png';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
 interface INavBarProps {
@@ -22,7 +21,7 @@ const NavBar: React.FC<INavBarProps> = () => {
           alignItems="center"
           onClick={() => routeTo('/')}
         >
-          <GradientIcon Icon={AdbIcon} gradientId="logo" />
+          <img src={logo} alt={'logo'} width={30} />
           <Typography
             component="a"
             className="nav-bar-title-text"

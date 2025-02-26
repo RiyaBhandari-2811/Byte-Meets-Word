@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import RenderEmoji from '../render_emoji/RenderEmoji';
-import WesternMan from '@assets/img/WesternMan.svg';
+import FemalePic from '@assets/img/female-user.png';
 import Heading from '../heading/Heading';
 import SocialHandles from '../social_handles/SocialHandles';
 
@@ -44,7 +44,7 @@ const HeroBanner = () => {
         <SocialHandles />
       </Stack>
       <Box>
-        <img src={WesternMan} width={200} />
+        <img src={FemalePic} width={250} />
       </Box>
     </Stack>
   );
