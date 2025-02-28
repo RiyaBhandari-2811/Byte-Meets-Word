@@ -5,11 +5,7 @@ import GradientText from '../gradient_text/GradientText';
 import logo from '@assets/img/digital-transformation.png';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
-interface INavBarProps {
-  toggleTheme?: () => void;
-}
-
-const NavBar: React.FC<INavBarProps> = () => {
+const NavBar: React.FC = () => {
   const routeTo: NavigateFunction = navigateToRoute();
   return (
     <AppBar className="nav-bar" position="static" elevation={0}>
