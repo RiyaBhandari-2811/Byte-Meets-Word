@@ -1,14 +1,4 @@
-/* Light Mode */
-$light-mode-colors: (
-  primary: rgb(71 144 217),
-  secondary: rgb(241 245 249 / 100%),
-  tertiary: rgb(30 41 59 / 100%),
-  quaternary: rgb(107 114 128 / 100%),
-  quinary: rgb(156 163 175 / 100%),
-);
-
-/* Dark Mode */
-$dark-mode-colors: (
+$colors: (
   primary: rgb(15 23 42 / 100%),
   secondary: rgb(30 41 59 / 100%),
   tertiary: rgb(248 250 252 / 100%),

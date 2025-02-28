@@ -2,14 +2,9 @@
 @use '../abstracts/mixins' as mixin;
 @use '../abstracts/fonts' as font;
 
-body.light-mode {
-  @each $name, $value in var.$light-mode-colors {
-    --#{$name}: #{$value};
-  }
-}
 
-body.dark-mode {
-  @each $name, $value in var.$dark-mode-colors {
+body.colors {
+  @each $name, $value in var.$colors {
     --#{$name}: #{$value};
   }
 }
