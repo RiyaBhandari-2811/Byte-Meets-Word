@@ -1,8 +1,12 @@
 import Heading from '@/components/heading/Heading';
 import { Button, Stack } from '@mui/material';
 import tagsJson from '@assets/json/tags.json';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
+import slugify from '@/utils/slugify';
 
 const Tags: React.FC = () => {
+  const routeTo: NavigateFunction = navigateToRoute();
+
   return (
     <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
       <Heading title={'Tags'} />
@@ -28,6 +32,8 @@ const Tags: React.FC = () => {
                 transition: 'all 0.3s ease-in-out',
               },
             }}
+            onClick={() => routeTo(`/tags/${slugify(tag.name)}`)}
+            key={tag.name}
           >
             {tag.name}
           </Button>

@@ -57,7 +57,7 @@ const Card: React.FC<ICardProps> = ({
         sx={{
           height: '100%',
         }}
-        onClick={() => routeTo(`articles/${id}`)}
+        onClick={() => routeTo(`/articles/${id}`)}
       >
         <CardMedia
           component="img"

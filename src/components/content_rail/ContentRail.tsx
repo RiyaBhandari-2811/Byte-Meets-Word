@@ -2,6 +2,7 @@ import { Box, Stack, Typography, useMediaQuery } from '@mui/material';
 import Heading from '../heading/Heading';
 import Card from '../card/Card';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
 interface IRailItem {
   id: string;
@@ -22,7 +23,7 @@ interface IContentRailProps {
 
 const ContentRail: React.FC<IContentRailProps> = ({ rails }) => {
   const isSm400to550 = useMediaQuery('(min-width:400px) and (max-width:550px)');
-
+  const routeTo: NavigateFunction = navigateToRoute();
   return (
     <Box sx={{ width: '100%' }}>
       {rails.map((rail, index) => {
@@ -62,6 +63,7 @@ const ContentRail: React.FC<IContentRailProps> = ({ rails }) => {
                       transition: 'background 0.3s ease-in-out',
                     },
                   }}
+                  onClick={() => routeTo(`/articles`)}
                 >
                   <Typography
                     className="hover-text"
