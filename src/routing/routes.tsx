@@ -4,6 +4,7 @@ import Tags from '@/pages/tags/Tags';
 import Courses from '@pages/Courses';
 import { JSX } from 'react';
 import ArticleDetail from '@/pages/article-detail/ArticleDetail';
+import TagDetail from '@/pages/tag-detail/TagDetail';
 
 interface RouteType {
   path: string;
@@ -16,6 +17,12 @@ const routes: RouteType[] = [
   { path: '/', element: <Home />, name: 'Home', hidden: true },
   { path: '/articles', element: <Articles />, name: 'Articles' },
   { path: '/tags', element: <Tags />, name: 'Tags' },
+  {
+    path: '/tags/:id',
+    element: <TagDetail />,
+    name: 'TagDetail',
+    hidden: true,
+  },
   {
     path: '/articles/:id',
     element: <ArticleDetail />,

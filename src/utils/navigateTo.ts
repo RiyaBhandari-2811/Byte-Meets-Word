@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { NavigateOptions, To, useNavigate } from 'react-router-dom';
 
-type NavigateFunction = (path: string) => void;
+type NavigateFunction = (to: To, options?: NavigateOptions) => void;
 
 const useNavigateToRoute = (): NavigateFunction => {
-  return useNavigate();
+  const navigate = useNavigate();
+  return (path, options) => navigate(path, options);
 };
 
 export type { NavigateFunction };
-
 export default useNavigateToRoute;
