@@ -5,10 +5,12 @@ import { Box, Container, Stack, ThemeProvider } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import './Layout.scss';
 import Newsletter from '@components/newsletter/Newsletter';
+import ScrollToTop from '@/utils/ScrollToTop';
 
 const Layout: React.FC = () => {
   return (
     <ThemeProvider theme={generateTheme()}>
+      <ScrollToTop />
       <Container
         sx={{
           paddingLeft: { lg: '1rem', xl: '0px', xxl: '0px' },
