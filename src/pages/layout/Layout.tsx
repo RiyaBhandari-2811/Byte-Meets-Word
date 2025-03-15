@@ -9,6 +9,8 @@ import ScrollToTop from '@/utils/ScrollToTop';
 import { useEffect } from 'react';
 
 const Layout: React.FC = () => {
+  console.log(import.meta.env.VITE_API_BASE_URL + '/users');
+
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch('/api/users');
