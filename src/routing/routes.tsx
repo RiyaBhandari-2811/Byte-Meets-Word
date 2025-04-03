@@ -18,7 +18,7 @@ const routes: RouteType[] = [
   { path: '/articles', element: <Articles />, name: 'Articles' },
   { path: '/tags', element: <Tags />, name: 'Tags' },
   {
-    path: '/tags/:id',
+    path: '/tags/:tagId',
     element: <TagDetail />,
     name: 'TagDetail',
     hidden: true,

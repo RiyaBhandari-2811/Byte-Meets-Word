@@ -1,11 +1,21 @@
 import Heading from '@/components/heading/Heading';
 import { Button, Stack } from '@mui/material';
-import tagsJson from '@assets/json/tags.json';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
-import slugify from '@/utils/slugify';
+import { useGetTagsQuery } from '@/features/tagsSlice';
 
 const Tags: React.FC = () => {
   const routeTo: NavigateFunction = navigateToRoute();
+  const { data: tags, error, isLoading } = useGetTagsQuery({});
+  if (isLoading) return <div>Loading...</div>;
+  if (error) {
+    const errorMessage =
+      'status' in error
+        ? `Error: ${error.status} - ${JSON.stringify(error.data)}`
+        : `Error: ${error.message}`;
+    return <div>{errorMessage}</div>;
+  }
+
+  console.log(tags);
 
   return (
     <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
@@ -17,7 +27,7 @@ const Tags: React.FC = () => {
         flexWrap={'wrap'}
         gap={2}
       >
-        {tagsJson.tags.map((tag: { name: string }) => (
+        {tags.map((tag: { name: string; _id: string }) => (
           <Button
             sx={{
               border: '1.5px solid rgb(52 152 219 / 80%)',
@@ -32,7 +42,7 @@ const Tags: React.FC = () => {
                 transition: 'all 0.3s ease-in-out',
               },
             }}
-            onClick={() => routeTo(`/tags/${slugify(tag.name)}`)}
+            onClick={() => routeTo(`/tags/${tag._id}`)}
             key={tag.name}
           >
             {tag.name}
