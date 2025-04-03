@@ -4,7 +4,7 @@ import Card from '../card/Card';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
-interface IRailItem {
+export interface IRailItem {
   id: string;
   title: string;
   subtitle: string;

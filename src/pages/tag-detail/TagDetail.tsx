@@ -1,14 +1,21 @@
 import Heading from '@/components/heading/Heading';
 import { Stack } from '@mui/material';
-import data from '@assets/json/contentRail.json';
 import Card from '@/components/card/Card';
 import { useParams } from 'react-router-dom';
+import { useGetArticlesByTagQuery } from '@/features/articlesSlice';
+import { IRailItem } from '@/components/content_rail/ContentRail';
 
 const TagDetail = () => {
-  const { id } = useParams();
+  const { tagId } = useParams();
+  const { data: articlesJson, isLoading } = useGetArticlesByTagQuery(tagId);
+
+  if (isLoading) return <p>Loading...</p>;
+
+  console.log(articlesJson);
+
   return (
     <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
-      <Heading title={id as string} />
+      <Heading title={articlesJson.tagName as string} />
       <Stack
         direction={'row'}
         justifyContent={{
@@ -25,18 +32,16 @@ const TagDetail = () => {
           md: '1rem',
         }}
       >
-        {data.contentRails.map((contentRail) =>
-          contentRail.railItems.map((railItem, index) => (
-            <Card
-              key={index}
-              id={railItem.id}
-              title={railItem.title}
-              subtitle={railItem.subtitle}
-              description={railItem.description}
-              image={railItem.image}
-            />
-          ))
-        )}
+        {articlesJson.articles.map((article: IRailItem) => (
+          <Card
+            key={article.id}
+            id={article.id}
+            title={article.title}
+            subtitle={article.subtitle}
+            description={article.description}
+            image={article.image}
+          />
+        ))}
       </Stack>
     </Stack>
   );
