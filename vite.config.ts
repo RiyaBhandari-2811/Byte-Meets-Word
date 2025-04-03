@@ -24,7 +24,6 @@ export default ({ mode }: { mode: string }) => {
         '/api': {
           target: env.VITE_API_BASE_URL,
           changeOrigin: true,
-          // DO NOT rewrite the path. Leave it as-is.
           rewrite: (path) => path,
         },
       },
