@@ -8,9 +8,17 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import GradientIcon from '@/components/gradient_icon/GradientIcon';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useGetArticleByIdQuery } from '@/features/articlesSlice';
 
 const ArticleDetail: React.FC = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const { articleId } = useParams();
+  const { data: article, isLoading } = useGetArticleByIdQuery(articleId);
+
+  if (isLoading) return <p>Loading...</p>;
+
+  console.log(article);
 
   const copyCode = async (codeText: string) => {
     try {

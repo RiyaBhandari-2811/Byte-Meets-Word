@@ -5,7 +5,7 @@ import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOu
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
 export interface IRailItem {
-  id: string;
+  _id: string;
   title: string;
   subtitle: string;
   description: string;
@@ -125,7 +125,7 @@ const ContentRail: React.FC<IContentRailProps> = ({ rails }) => {
                 return (
                   <Card
                     key={index}
-                    id={railItem.id}
+                    id={railItem._id}
                     title={railItem.title}
                     subtitle={railItem.subtitle}
                     description={railItem.description}

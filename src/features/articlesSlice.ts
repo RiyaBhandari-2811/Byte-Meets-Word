@@ -10,7 +10,17 @@ export const articlesSlice = createApi({
     getArticlesByTag: builder.query({
       query: (tagId) => `/articles/tag/${tagId}`,
     }),
+    getArticleById: builder.query({
+      query: (articleId) => `/articles/${articleId}`,
+    }),
+    getAllArticles: builder.query({
+      query: () => '/articles',
+    }),
   }),
 });
 
-export const { useGetArticlesByTagQuery } = articlesSlice;
+export const {
+  useGetArticlesByTagQuery,
+  useGetArticleByIdQuery,
+  useGetAllArticlesQuery,
+} = articlesSlice;

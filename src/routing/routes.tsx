@@ -24,7 +24,7 @@ const routes: RouteType[] = [
     hidden: true,
   },
   {
-    path: '/articles/:id',
+    path: '/articles/:articleId',
     element: <ArticleDetail />,
     name: 'ArticleDetail',
     hidden: true,
