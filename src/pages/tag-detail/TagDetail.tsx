@@ -35,7 +35,7 @@ const TagDetail = () => {
         {articlesJson.articles.map((article: IRailItem) => (
           <Card
             key={article.id}
-            id={article.id}
+            id={article.id as string}
             title={article.title}
             subtitle={article.subtitle}
             description={article.description}

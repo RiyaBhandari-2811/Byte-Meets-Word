@@ -30,7 +30,7 @@ const Articles = () => {
         {articlesJson.articles.map((railItem: IRailItem) => (
           <Card
             key={railItem._id}
-            id={railItem._id}
+            id={railItem._id as string}
             title={railItem.title}
             subtitle={railItem.subtitle}
             description={railItem.description}
