@@ -8,7 +8,7 @@ export const tagsSlice = createApi({
   }),
   endpoints: (builder) => ({
     getTags: builder.query({
-      query: () => 'tags',
+      query: (page) => `tags?page=${page}`,
     }),
   }),
 });

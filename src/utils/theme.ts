@@ -9,6 +9,9 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
+    tertiary: {
+      main: string;
+    };
     quaternary: {
       main: string;
     };
@@ -23,6 +26,9 @@ const generateTheme: GenerateTheme = () => {
       },
       secondary: {
         main: getCssVariable('--secondary'),
+      },
+      tertiary: {
+        main: getCssVariable('--tertiary'),
       },
       quaternary: {
         main: getCssVariable('--quaternary'),
