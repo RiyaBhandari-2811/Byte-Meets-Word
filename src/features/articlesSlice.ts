@@ -14,7 +14,7 @@ export const articlesSlice = createApi({
       query: (articleId) => `/articles/${articleId}`,
     }),
     getAllArticles: builder.query({
-      query: () => '/articles',
+      query: (page) => `/articles?page=${page}`,
     }),
   }),
 });
