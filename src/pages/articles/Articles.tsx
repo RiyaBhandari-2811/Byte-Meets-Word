@@ -3,10 +3,15 @@ import { Stack } from '@mui/material';
 import Card from '@/components/card/Card';
 import { useGetAllArticlesQuery } from '@/features/articlesSlice';
 import { IRailItem } from '@/components/content_rail/ContentRail';
+import { useState } from 'react';
+import Pagination from '@/components/pagination/Pagination';
 
 const Articles = () => {
-  const { data: articlesJson, isLoading } = useGetAllArticlesQuery({});
+  const [page, setPage] = useState<number>(1);
+  const { data: articlesJson, isLoading } = useGetAllArticlesQuery(page);
   if (isLoading) return <div>Loading...</div>;
+
+  console.log(articlesJson);
 
   return (
     <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
@@ -38,6 +43,9 @@ const Articles = () => {
           />
         ))}
       </Stack>
+      {articlesJson.totalPages > 1 ? (
+        <Pagination totalPages={articlesJson.totalPages} setPage={setPage} />
+      ) : null}
     </Stack>
   );
 };
