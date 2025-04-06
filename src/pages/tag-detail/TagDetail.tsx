@@ -4,10 +4,16 @@ import Card from '@/components/card/Card';
 import { useParams } from 'react-router-dom';
 import { useGetArticlesByTagQuery } from '@/features/articlesSlice';
 import { IRailItem } from '@/components/content_rail/ContentRail';
+import { useState } from 'react';
+import Pagination from '@/components/pagination/Pagination';
 
 const TagDetail = () => {
-  const { tagId } = useParams();
-  const { data: articlesJson, isLoading } = useGetArticlesByTagQuery(tagId);
+  const { tagId } = useParams<string>();
+  const [page, setPage] = useState<number>(1);
+  const { data: articlesJson, isLoading } = useGetArticlesByTagQuery({
+    tagId: tagId as string,
+    page,
+  });
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -34,15 +40,18 @@ const TagDetail = () => {
       >
         {articlesJson.articles.map((article: IRailItem) => (
           <Card
-            key={article.id}
-            id={article.id as string}
+            key={article._id}
+            id={article._id as string}
             title={article.title}
-            subtitle={article.subtitle}
-            description={article.description}
-            image={article.image}
+            subtitle={article.createdAt + ' ' + article.readTime}
+            description={article.summary}
+            image={article.featureImage}
           />
         ))}
       </Stack>
+      {articlesJson.totalPages > 1 ? (
+        <Pagination totalPages={articlesJson.totalPages} setPage={setPage} />
+      ) : null}
     </Stack>
   );
 };

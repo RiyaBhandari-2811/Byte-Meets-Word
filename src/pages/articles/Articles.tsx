@@ -32,14 +32,14 @@ const Articles = () => {
           md: '1rem',
         }}
       >
-        {articlesJson.articles.map((railItem: IRailItem) => (
+        {articlesJson.articles.map((article: IRailItem) => (
           <Card
-            key={railItem._id}
-            id={railItem._id as string}
-            title={railItem.title}
-            subtitle={railItem.subtitle}
-            description={railItem.description}
-            image={railItem.image}
+            key={article._id}
+            id={article._id as string}
+            title={article.title}
+            subtitle={article.createdAt + ' ' + article.readTime}
+            description={article.summary}
+            image={article.featureImage}
           />
         ))}
       </Stack>

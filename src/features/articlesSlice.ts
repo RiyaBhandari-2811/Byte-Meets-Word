@@ -8,7 +8,8 @@ export const articlesSlice = createApi({
   }),
   endpoints: (builder) => ({
     getArticlesByTag: builder.query({
-      query: (tagId) => `/articles/tag/${tagId}`,
+      query: ({ tagId, page }: { tagId: string; page: number }) =>
+        `/articles/tag/${tagId}?page=${page}`,
     }),
     getArticleById: builder.query({
       query: (articleId) => `/articles/${articleId}`,

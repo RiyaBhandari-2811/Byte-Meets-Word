@@ -1,5 +1,4 @@
 import Heading from '@/components/heading/Heading';
-import articleData from '@assets/json/articleDetail.json';
 import { Box, Stack, Typography } from '@mui/material';
 import parse, { DOMNode, Element, Text } from 'html-react-parser';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -10,6 +9,20 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetArticleByIdQuery } from '@/features/articlesSlice';
+
+export interface IArticle {
+  title: string;
+  subtitle: string;
+  summary: string;
+  featureImage: string;
+  mainContent: string;
+  readTime: number;
+  category?: string;
+  tags: string[];
+  isActive: boolean;
+  createdAt: Date;
+  modifiedAt: Date;
+}
 
 const ArticleDetail: React.FC = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -108,7 +121,7 @@ const ArticleDetail: React.FC = () => {
   return (
     <Stack gap={1}>
       <Heading
-        title={articleData.title}
+        title={article.title}
         styleProps={{ textAlign: 'center' }}
         gradient={false}
       />
@@ -123,7 +136,7 @@ const ArticleDetail: React.FC = () => {
           },
         }}
       >
-        {articleData.subtitle}
+        {article?.subtitle}
       </Typography>
       <Typography
         sx={{
@@ -135,10 +148,10 @@ const ArticleDetail: React.FC = () => {
           },
           letterSpacing: '0.5px',
         }}
-      >{`${articleData.created_at} - ${articleData.reading_time}`}</Typography>
-      <img src={articleData.featured_image} alt={articleData.title} />
+      >{`${article.createdAt} - ${article.readTime}`}</Typography>
+      <img src={article.featureImage} alt={article.title} />
       <Typography component={'div'}>
-        {parse(articleData.main_content, { replace: transform })}
+        {parse(article.mainContent, { replace: transform })}
       </Typography>
     </Stack>
   );
