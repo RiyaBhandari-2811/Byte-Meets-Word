@@ -3,6 +3,7 @@ import Heading from '../heading/Heading';
 import Card from '../card/Card';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
+import { useGetContentRailQuery } from '@/features/contentRailSlice';
 
 export interface IRailItem {
   _id: string;
@@ -14,25 +15,29 @@ export interface IRailItem {
 }
 
 interface IRail {
-  title: string;
-  railItems: IRailItem[];
+  _id: string;
+  name: string;
+  articles: IRailItem[];
+  showViewAll: boolean;
 }
 
-interface IContentRailProps {
-  rails: IRail[];
-}
+// interface IContentRailProps {
+//   rails: IRail[];
+// }
 
-const ContentRail: React.FC<IContentRailProps> = ({
-  rails,
-}: IContentRailProps) => {
+const ContentRail: React.FC = () => {
   const isSm400to550 = useMediaQuery('(min-width:400px) and (max-width:550px)');
   const routeTo: NavigateFunction = navigateToRoute();
+  const { data: railJson, isLoading } = useGetContentRailQuery({});
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <Box sx={{ width: '100%' }}>
-      {rails.map((rail, index) => {
+      {railJson.map((rail: IRail) => {
         return (
           <Stack
-            key={index}
+            key={rail._id}
             gap={5}
             sx={{ marginBottom: '20px' }}
             alignItems={{
@@ -49,9 +54,9 @@ const ContentRail: React.FC<IContentRailProps> = ({
               sx={{ width: '100%' }}
             >
               <Box>
-                <Heading title={rail.title} />
+                <Heading title={rail.name} />
               </Box>
-              {rail.railItems.length >= 3 && (
+              {rail.showViewAll && (
                 <Stack
                   direction={'row'}
                   alignItems={'center'}
@@ -124,7 +129,7 @@ const ContentRail: React.FC<IContentRailProps> = ({
                 xl: 'flex-start',
               }}
             >
-              {rail.railItems.slice(0, 3).map((article) => {
+              {rail.articles.slice(0, 3).map((article: IRailItem) => {
                 return (
                   <Card
                     key={article._id}
