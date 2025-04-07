@@ -9,7 +9,7 @@ export interface IRailItem {
   title: string;
   summary: string;
   featureImage: string;
-  readTime: string;
+  readTime: number;
   createdAt: string;
 }
 
@@ -22,7 +22,9 @@ interface IContentRailProps {
   rails: IRail[];
 }
 
-const ContentRail: React.FC<IContentRailProps> = ({ rails }) => {
+const ContentRail: React.FC<IContentRailProps> = ({
+  rails,
+}: IContentRailProps) => {
   const isSm400to550 = useMediaQuery('(min-width:400px) and (max-width:550px)');
   const routeTo: NavigateFunction = navigateToRoute();
   return (
