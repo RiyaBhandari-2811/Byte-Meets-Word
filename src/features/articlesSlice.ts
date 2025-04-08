@@ -17,6 +17,10 @@ export const articlesSlice = createApi({
     getAllArticles: builder.query({
       query: (page) => `/articles?page=${page}`,
     }),
+    getAllArticlesByCategoryId: builder.query({
+      query: ({ categoryId, page }) =>
+        `/articles/category/${categoryId}?page=${page}`,
+    }),
   }),
 });
 
@@ -24,4 +28,5 @@ export const {
   useGetArticlesByTagQuery,
   useGetArticleByIdQuery,
   useGetAllArticlesQuery,
+  useGetAllArticlesByCategoryIdQuery,
 } = articlesSlice;

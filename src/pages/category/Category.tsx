@@ -1,15 +1,18 @@
 import Heading from '@/components/heading/Heading';
 import { Stack } from '@mui/material';
 import Card from '@/components/card/Card';
-import { useGetAllArticlesQuery } from '@/features/articlesSlice';
+import { useGetAllArticlesByCategoryIdQuery } from '@/features/articlesSlice';
 import { IRailItem } from '@/components/content_rail/ContentRail';
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Pagination from '@/components/pagination/Pagination';
+import { useState } from 'react';
 
-const Articles = () => {
+const Category = () => {
   const [page, setPage] = useState<number>(1);
+  const { categoryId } = useParams<string>();
+  const response = useGetAllArticlesByCategoryIdQuery({ categoryId, page });
 
-  const { data: articlesJson, isLoading } = useGetAllArticlesQuery(page);
+  const { data: articlesJson, isLoading } = response;
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -17,7 +20,7 @@ const Articles = () => {
 
   return (
     <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
-      <Heading title={'Articles'} />
+      <Heading title={articlesJson.categoryName} />
       <Stack
         direction={'row'}
         justifyContent={{
@@ -52,4 +55,4 @@ const Articles = () => {
   );
 };
 
-export default Articles;
+export default Category;
