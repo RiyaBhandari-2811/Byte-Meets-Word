@@ -4,11 +4,13 @@ import Card from '@/components/card/Card';
 import { useGetAllArticlesByCategoryIdQuery } from '@/features/articlesSlice';
 import { IRailItem } from '@/components/content_rail/ContentRail';
 import { useParams } from 'react-router-dom';
+import Pagination from '@/components/pagination/Pagination';
+import { useState } from 'react';
 
 const Category = () => {
-  //   const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
   const { categoryId } = useParams<string>();
-  const response = useGetAllArticlesByCategoryIdQuery(categoryId);
+  const response = useGetAllArticlesByCategoryIdQuery({ categoryId, page });
 
   const { data: articlesJson, isLoading } = response;
 
@@ -18,9 +20,7 @@ const Category = () => {
 
   return (
     <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
-      <Heading
-        title={categoryId ? articlesJson.categoryName.name : 'Articles'}
-      />
+      <Heading title={articlesJson.categoryName} />
       <Stack
         direction={'row'}
         justifyContent={{
@@ -48,9 +48,9 @@ const Category = () => {
           />
         ))}
       </Stack>
-      {/* {articlesJson.totalPages > 1 ? (
+      {articlesJson.totalPages > 1 ? (
         <Pagination totalPages={articlesJson.totalPages} setPage={setPage} />
-      ) : null} */}
+      ) : null}
     </Stack>
   );
 };
