@@ -5,6 +5,7 @@ import Courses from '@pages/Courses';
 import { JSX } from 'react';
 import ArticleDetail from '@/pages/article-detail/ArticleDetail';
 import TagDetail from '@/pages/tag-detail/TagDetail';
+import Category from '@/pages/category/Category';
 
 interface RouteType {
   path: string;
@@ -21,6 +22,12 @@ const routes: RouteType[] = [
     path: '/tags/:tagId',
     element: <TagDetail />,
     name: 'TagDetail',
+    hidden: true,
+  },
+  {
+    path: '/articles/category/:categoryId',
+    element: <Category />,
+    name: 'Category',
     hidden: true,
   },
   {

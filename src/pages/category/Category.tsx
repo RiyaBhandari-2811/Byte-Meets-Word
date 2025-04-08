@@ -1,15 +1,16 @@
 import Heading from '@/components/heading/Heading';
 import { Stack } from '@mui/material';
 import Card from '@/components/card/Card';
-import { useGetAllArticlesQuery } from '@/features/articlesSlice';
+import { useGetAllArticlesByCategoryIdQuery } from '@/features/articlesSlice';
 import { IRailItem } from '@/components/content_rail/ContentRail';
-import { useState } from 'react';
-import Pagination from '@/components/pagination/Pagination';
+import { useParams } from 'react-router-dom';
 
-const Articles = () => {
-  const [page, setPage] = useState<number>(1);
+const Category = () => {
+  //   const [page, setPage] = useState<number>(1);
+  const { categoryId } = useParams<string>();
+  const response = useGetAllArticlesByCategoryIdQuery(categoryId);
 
-  const { data: articlesJson, isLoading } = useGetAllArticlesQuery(page);
+  const { data: articlesJson, isLoading } = response;
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -17,7 +18,9 @@ const Articles = () => {
 
   return (
     <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
-      <Heading title={'Articles'} />
+      <Heading
+        title={categoryId ? articlesJson.categoryName.name : 'Articles'}
+      />
       <Stack
         direction={'row'}
         justifyContent={{
@@ -45,11 +48,11 @@ const Articles = () => {
           />
         ))}
       </Stack>
-      {articlesJson.totalPages > 1 ? (
+      {/* {articlesJson.totalPages > 1 ? (
         <Pagination totalPages={articlesJson.totalPages} setPage={setPage} />
-      ) : null}
+      ) : null} */}
     </Stack>
   );
 };
 
-export default Articles;
+export default Category;

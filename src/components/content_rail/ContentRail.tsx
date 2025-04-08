@@ -71,7 +71,7 @@ const ContentRail: React.FC = () => {
                       transition: 'background 0.3s ease-in-out',
                     },
                   }}
-                  onClick={() => routeTo(`/articles`)}
+                  onClick={() => routeTo(`/articles/category/${rail._id}`)}
                 >
                   <Typography
                     className="hover-text"
