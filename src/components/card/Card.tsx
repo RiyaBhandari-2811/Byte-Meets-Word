@@ -7,26 +7,20 @@ import {
 import MUICard from '@mui/material/Card';
 import './Card.scss';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
+import { IArticle } from '@/types/article';
 
 interface ICardProps {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
+  article: IArticle;
 }
 
-const Card: React.FC<ICardProps> = ({
-  id,
-  title,
-  subtitle,
-  description,
-  image,
-}) => {
+const Card: React.FC<ICardProps> = ({ article }) => {
   const routeTo: NavigateFunction = navigateToRoute();
+
+  const { _id, title, description, featureImage, readTime, createdAt } =
+    article;
+
   return (
     <MUICard
-      key={id}
       className="card"
       sx={{
         width: {
@@ -57,12 +51,12 @@ const Card: React.FC<ICardProps> = ({
         sx={{
           height: '100%',
         }}
-        onClick={() => routeTo(`/articles/${id}`)}
+        onClick={() => routeTo(`/articles/${_id}`)}
       >
         <CardMedia
           component="img"
           alt={title}
-          image={image}
+          image={featureImage}
           height={'50%'}
           className="card__media"
           sx={{
@@ -108,7 +102,7 @@ const Card: React.FC<ICardProps> = ({
               color: 'rgba(156, 163, 175, 1)',
             }}
           >
-            {subtitle}
+            {createdAt + ' ' + readTime}
           </Typography>
         </CardContent>
       </CardActionArea>

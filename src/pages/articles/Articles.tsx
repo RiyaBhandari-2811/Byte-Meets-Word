@@ -2,9 +2,9 @@ import Heading from '@/components/heading/Heading';
 import { Stack } from '@mui/material';
 import Card from '@/components/card/Card';
 import { useGetAllArticlesQuery } from '@/features/articlesSlice';
-import { IRailItem } from '@/components/content_rail/ContentRail';
 import { useState } from 'react';
 import Pagination from '@/components/pagination/Pagination';
+import { IArticle } from '@/types/article';
 
 const Articles = () => {
   const [page, setPage] = useState<number>(1);
@@ -34,15 +34,8 @@ const Articles = () => {
           md: '1rem',
         }}
       >
-        {articlesJson.articles.map((article: IRailItem) => (
-          <Card
-            key={article._id}
-            id={article._id as string}
-            title={article.title}
-            subtitle={article.createdAt + ' ' + article.readTime}
-            description={article.summary}
-            image={article.featureImage}
-          />
+        {articlesJson.articles.map((article: IArticle) => (
+          <Card key={article._id} article={article} />
         ))}
       </Stack>
       {articlesJson.totalPages > 1 ? (
