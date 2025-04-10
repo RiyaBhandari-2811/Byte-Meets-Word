@@ -27,7 +27,9 @@ export interface IArticle {
 const ArticleDetail: React.FC = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const { articleId } = useParams();
-  const { data: article, isLoading } = useGetArticleByIdQuery(articleId);
+  const { data: article, isLoading } = useGetArticleByIdQuery(
+    articleId as string
+  );
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -119,41 +121,43 @@ const ArticleDetail: React.FC = () => {
   };
 
   return (
-    <Stack gap={1}>
-      <Heading
-        title={article.title}
-        styleProps={{ textAlign: 'center' }}
-        gradient={false}
-      />
-      <Typography
-        sx={{
-          textAlign: 'center',
-          marginBottom: '1rem',
-          fontSize: {
-            xs: '0.8rem',
-            sm: '1rem',
-            xl: '1.5rem',
-          },
-        }}
-      >
-        {article?.subtitle}
-      </Typography>
-      <Typography
-        sx={{
-          color: 'rgba(156, 163, 175, 1)',
-          fontSize: {
-            xs: '0.7rem',
-            sm: '0.9rem',
-            xl: '1.3rem',
-          },
-          letterSpacing: '0.5px',
-        }}
-      >{`${article.createdAt} - ${article.readTime}`}</Typography>
-      <img src={article.featureImage} alt={article.title} />
-      <Typography component={'div'}>
-        {parse(article.mainContent, { replace: transform })}
-      </Typography>
-    </Stack>
+    article && (
+      <Stack gap={1}>
+        <Heading
+          title={article.title}
+          styleProps={{ textAlign: 'center' }}
+          gradient={false}
+        />
+        <Typography
+          sx={{
+            textAlign: 'center',
+            marginBottom: '1rem',
+            fontSize: {
+              xs: '0.8rem',
+              sm: '1rem',
+              xl: '1.5rem',
+            },
+          }}
+        >
+          {article?.subtitle}
+        </Typography>
+        <Typography
+          sx={{
+            color: 'rgba(156, 163, 175, 1)',
+            fontSize: {
+              xs: '0.7rem',
+              sm: '0.9rem',
+              xl: '1.3rem',
+            },
+            letterSpacing: '0.5px',
+          }}
+        >{`${article.createdAt} - ${article.readTime}`}</Typography>
+        <img src={article.featureImage} alt={article.title} />
+        <Typography component={'div'}>
+          {parse(article.mainContent, { replace: transform })}
+        </Typography>
+      </Stack>
+    )
   );
 };
 export default ArticleDetail;
