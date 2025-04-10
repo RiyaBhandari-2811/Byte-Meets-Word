@@ -33,7 +33,8 @@
       "@pages/*": ["src/pages/*"],
       "@routing/*": ["src/routing/*"],
       "@scss/*": ["src/scss/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@types/*": ["src/types/*"]
     }
   },
   "include": ["src", "vite-env.d.ts"]
