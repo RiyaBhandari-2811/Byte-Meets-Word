@@ -1,11 +1,12 @@
-import Articles from '@/pages/articles/Articles';
+import Articles from '@pages/articles/Articles';
 import Home from '@pages/Home';
-import Tags from '@/pages/tags/Tags';
+import Tags from '@pages/tags/Tags';
 import Courses from '@pages/Courses';
 import { JSX } from 'react';
-import ArticleDetail from '@/pages/article-detail/ArticleDetail';
-import TagDetail from '@/pages/tag-detail/TagDetail';
-import Category from '@/pages/category/Category';
+import ArticleDetail from '@pages/article-detail/ArticleDetail';
+import TagDetail from '@pages/tag-detail/TagDetail';
+import Category from '@pages/category/Category';
+import Auth from '@pages/auth/Auth';
 
 interface RouteType {
   path: string;
@@ -37,6 +38,12 @@ const routes: RouteType[] = [
     hidden: true,
   },
   { path: '/courses', element: <Courses />, name: 'Courses' },
+  {
+    path: '/admin/auth',
+    element: <Auth />,
+    name: 'Sign up',
+    hidden: true,
+  },
 ];
 
 export type { RouteType };
