@@ -6,7 +6,8 @@ import { JSX } from 'react';
 import ArticleDetail from '@pages/article-detail/ArticleDetail';
 import TagDetail from '@pages/tag-detail/TagDetail';
 import Category from '@pages/category/Category';
-import Auth from '@pages/auth/Auth';
+import SignIn from '@pages/auth/SignIn';
+import SignUp from '@pages/auth/SignUp';
 
 interface RouteType {
   path: string;
@@ -39,9 +40,15 @@ const routes: RouteType[] = [
   },
   { path: '/courses', element: <Courses />, name: 'Courses' },
   {
-    path: '/admin/auth',
-    element: <Auth />,
+    path: '/signUp',
+    element: <SignUp />,
     name: 'Sign up',
+    hidden: true,
+  },
+  {
+    path: '/signIn',
+    element: <SignIn />,
+    name: 'Sign in',
     hidden: true,
   },
 ];
