@@ -7,45 +7,44 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import courses from '@assets/json/courses.json';
+import { ICourse } from '@/types/course';
+import { useState } from 'react';
+import { useGetCoursesQuery } from '@/features/courseSlice';
+import Pagination from '@/components/pagination/Pagination';
 
 const Courses = () => {
-  const goToYouTube = (youtube_link: string) => {
-    window.open(youtube_link, '_blank');
+  const goToYouTube = (youtubeLink: string) => {
+    window.open(youtubeLink, '_blank');
   };
+
+  const [page, setPage] = useState<number>(1);
+  const { data, isLoading } = useGetCoursesQuery(page);
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
-    <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
-      <Heading title={'Courses'} />
-      <Stack
-        direction={'row'}
-        justifyContent={{
-          xs: 'center',
-          sm: 'center',
-          md: 'centre',
-          lg: 'flex-start',
-          xl: 'flex-start',
-        }}
-        alignItems={'center'}
-        flexWrap={'wrap'}
-        gap={2}
-        marginLeft={{
-          md: '1rem',
-        }}
-      >
-        {courses.courses.map(
-          (
-            {
-              title,
-              image,
-              description,
-              date_of_upload,
-              duration,
-              youtube_link,
-            },
-            id: number
-          ) => (
+    data && (
+      <Stack justifyContent={'center'} alignItems={'center'} gap={3}>
+        <Heading title={data.name} />
+        <Stack
+          direction={'row'}
+          justifyContent={{
+            xs: 'center',
+            sm: 'center',
+            md: 'centre',
+            lg: 'flex-start',
+            xl: 'flex-start',
+          }}
+          alignItems={'center'}
+          flexWrap={'wrap'}
+          gap={2}
+          marginLeft={{
+            md: '1rem',
+          }}
+        >
+          {data.courses.map((course: ICourse) => (
             <Card
-              key={id}
+              key={course._id}
               className="card"
               sx={{
                 width: {
@@ -76,12 +75,12 @@ const Courses = () => {
                 sx={{
                   height: '100%',
                 }}
-                onClick={() => goToYouTube(youtube_link)}
+                onClick={() => goToYouTube(course.youtubeLink)}
               >
                 <CardMedia
                   component="img"
-                  alt={title}
-                  image={image}
+                  alt={course.title}
+                  image={course.featureImage}
                   height={'50%'}
                   className="card__media"
                   sx={{
@@ -107,7 +106,7 @@ const Courses = () => {
                       fontWeight: 'fontWeightBold',
                     }}
                   >
-                    {title}
+                    {course.title}
                   </Typography>
 
                   <Typography
@@ -117,7 +116,7 @@ const Courses = () => {
                       fontWeight: 'fontWeightRegular',
                     }}
                   >
-                    {description}
+                    {course.description}
                   </Typography>
                   <Typography
                     className="card__subtitle"
@@ -127,15 +126,19 @@ const Courses = () => {
                       color: 'rgba(156, 163, 175, 1)',
                     }}
                   >
-                    {date_of_upload + ' ' + duration}
+                    {course.createdAt + ' ' + course.duration}
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
-          )
-        )}
+          ))}
+        </Stack>
+
+        {data.totalPages > 1 ? (
+          <Pagination totalPages={data.totalPages} setPage={setPage} />
+        ) : null}
       </Stack>
-    </Stack>
+    )
   );
 };
 
