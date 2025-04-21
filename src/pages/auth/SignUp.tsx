@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 import {
   TextField,
   Button,
@@ -29,6 +30,19 @@ const SignUpForm = () => {
     e.preventDefault();
     await signup(form);
   };
+
+  const routeTo: NavigateFunction = navigateToRoute();
+
+  useEffect(() => {
+    if (isSuccess) {
+      // Wait for a moment before redirecting
+      const timer = setTimeout(() => {
+        routeTo('/signIn');
+      }, 2000); // 2 seconds
+
+      return () => clearTimeout(timer); // Cleanup
+    }
+  }, [isSuccess, routeTo]);
 
   return (
     <form onSubmit={handleSubmit}>
