@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IUser } from '@/types/user';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
@@ -17,7 +18,24 @@ export const userSlice = createApi({
         },
       }),
     }),
+    signIn: builder.mutation({
+      query: (user: { email: string; password: string }) => ({
+        url: '/user/signIn',
+        method: 'POST',
+        body: user,
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      }),
+      transformResponse: (response: any, metadata: any) => {
+        // TODO
+        console.log('metadata: ', metadata);
+        const token = metadata.response.headers.get('Authorization');
+        response.token = token;
+        return response;
+      },
+    }),
   }),
 });
 
-export const { useCreateUserMutation } = userSlice;
+export const { useCreateUserMutation, useSignInMutation } = userSlice;
