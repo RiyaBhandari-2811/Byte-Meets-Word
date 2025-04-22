@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IUser } from '@/types/user';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
@@ -27,13 +26,6 @@ export const userSlice = createApi({
           'Content-type': 'application/json; charset=UTF-8',
         },
       }),
-      transformResponse: (response: any, metadata: any) => {
-        // TODO
-        console.log('metadata: ', metadata);
-        const token = metadata.response.headers.get('Authorization');
-        response.token = token;
-        return response;
-      },
     }),
   }),
 });

@@ -15,14 +15,8 @@ const SignIn = () => {
     try {
       const result = await signIn({ email, password }).unwrap();
       console.log(result);
-      setMessage('Sign in successful!');
 
-      // const token =
-      //   result?.token ||
-      //   result?.meta?.response?.headers
-      //     .get('Authorization')
-      //     ?.replace('Bearer ', '');
-      //     localStorage.setItem("accessToken", token);
+      // result?.token && localStorage.setItem('accessToken', result?.token);
     } catch (err: any) {
       console.error(err);
       setMessage(err?.data?.message || 'Sign in failed');
