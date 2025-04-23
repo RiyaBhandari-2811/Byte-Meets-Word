@@ -4,6 +4,7 @@ import { articlesSlice } from '@/features/articlesSlice';
 import { contentRailSlice } from '@/features/contentRailSlice';
 import { coursesSlice } from '@/features/courseSlice';
 import { userSlice } from '@/features/userSlice';
+import userStoreSlice from '@/features/store_slice/userStoreSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     [contentRailSlice.reducerPath]: contentRailSlice.reducer,
     [coursesSlice.reducerPath]: coursesSlice.reducer,
     [userSlice.reducerPath]: userSlice.reducer,
+    userStore: userStoreSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
