@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { setUser } from '@/features/store_slice/userStoreSlice';
 import { useSignInMutation } from '@/features/userSlice';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +10,8 @@ const SignIn = () => {
   const [message, setMessage] = useState('');
 
   const [signIn, { isLoading, isSuccess, isError }] = useSignInMutation();
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,6 +21,14 @@ const SignIn = () => {
       console.log(result);
 
       // result?.token && localStorage.setItem('accessToken', result?.token);
+      if (result?.token) {
+        dispatch(
+          setUser({
+            isAuthorized: true,
+            role: 'admin',
+          })
+        );
+      }
     } catch (err: any) {
       console.error(err);
       setMessage(err?.data?.message || 'Sign in failed');
@@ -29,6 +41,10 @@ const SignIn = () => {
       console.log('Redirect to dashboard or home');
     }
   }, [isSuccess]);
+
+  const userStore = useSelector((state: any) => state.userStore);
+
+  console.log(userStore);
 
   return (
     <form onSubmit={handleSubmit} style={{ maxWidth: 300 }}>
