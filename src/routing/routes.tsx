@@ -8,6 +8,7 @@ import TagDetail from '@pages/tag-detail/TagDetail';
 import Category from '@pages/category/Category';
 import SignIn from '@pages/auth/SignIn';
 import SignUp from '@pages/auth/SignUp';
+import Auth from '@/pages/auth/Auth';
 
 interface RouteType {
   path: string;
@@ -49,6 +50,12 @@ const routes: RouteType[] = [
     path: '/signIn',
     element: <SignIn />,
     name: 'Sign in',
+    hidden: true,
+  },
+  {
+    path: '/auth',
+    element: <Auth />,
+    name: 'Auth',
     hidden: true,
   },
 ];
