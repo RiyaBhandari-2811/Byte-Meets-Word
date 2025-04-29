@@ -15,8 +15,10 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useCreateUserMutation } from '@/features/userSlice';
 
 const Auth = () => {
+  const [signup] = useCreateUserMutation();
   const { control, handleSubmit } = useForm();
   const [action, setAction] = useState('signUp');
   const [showPassword, setShowPassword] = useState(false);
@@ -60,8 +62,9 @@ const Auth = () => {
     },
   }));
 
-  const handleOnSubmit = (data: any) => {
+  const handleOnSubmit = async (data: any) => {
     console.log(data);
+    await signup(data);
   };
 
   return (
@@ -170,7 +173,7 @@ const Auth = () => {
           control={control}
         />
         <Stack direction={'row'} gap={2}>
-          <SubmitButton onClick={() => setAction('signUp')}>
+          <SubmitButton type="submit" onClick={() => setAction('signUp')}>
             {' '}
             Sign Up{' '}
           </SubmitButton>
