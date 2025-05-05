@@ -11,6 +11,10 @@ export const userStoreSlice = createSlice({
       state.isAuthorized = action.payload.isAuthorized;
       state.role = action.payload.role;
     },
+    logout: (state) => {
+      state.isAuthorized = false;
+      state.role = null;
+    },
   },
 });
 
