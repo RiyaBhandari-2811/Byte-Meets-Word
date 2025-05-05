@@ -2,12 +2,15 @@ import Footer from '@/components/footer/Footer';
 import NavBar from '@components/nav_bar/NavBar';
 import generateTheme from '@/utils/theme';
 import { Box, Container, Stack, ThemeProvider } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import './Layout.scss';
 import Newsletter from '@components/newsletter/Newsletter';
 import ScrollToTop from '@/utils/ScrollToTop';
 
 const Layout: React.FC = () => {
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <ThemeProvider theme={generateTheme()}>
       <ScrollToTop />
@@ -29,7 +32,7 @@ const Layout: React.FC = () => {
           <Box component="main" className="layout__content">
             <Outlet />
           </Box>
-          <Newsletter />
+          {location.pathname === '/editor' ? null : <Newsletter />}
           <Footer />
         </Stack>
       </Container>
