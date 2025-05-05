@@ -3,6 +3,7 @@ import { setUser } from '@/features/store_slice/userStoreSlice';
 import { useSignInMutation } from '@/features/userSlice';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +13,7 @@ const SignIn = () => {
   const [signIn, { isLoading, isSuccess, isError }] = useSignInMutation();
 
   const dispatch = useDispatch();
+  const routeTo: NavigateFunction = navigateToRoute();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +22,6 @@ const SignIn = () => {
       const result = await signIn({ email, password }).unwrap();
       console.log(result);
 
-      // result?.token && localStorage.setItem('accessToken', result?.token);
       if (result?.token) {
         dispatch(
           setUser({
@@ -37,10 +38,9 @@ const SignIn = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      // Optional: redirect or handle token
-      console.log('Redirect to dashboard or home');
+      routeTo('/editor');
     }
-  }, [isSuccess]);
+  }, [isSuccess, routeTo]);
 
   const userStore = useSelector((state: any) => state.userStore);
 
