@@ -9,7 +9,7 @@ import Category from '@pages/category/Category';
 import SignIn from '@pages/auth/SignIn';
 import SignUp from '@pages/auth/SignUp';
 import Auth from '@/pages/auth/Auth';
-import Editor from '@/pages/editor/Editor';
+import ArticleEditor from '@/pages/article_editor/ArticleEditor';
 import ProtectedRoute from '@/components/protected_route/ProtectedRoute';
 
 interface RouteType {
@@ -64,7 +64,7 @@ const routes: RouteType[] = [
     path: '/editor',
     element: (
       <ProtectedRoute>
-        <Editor />
+        <ArticleEditor />
       </ProtectedRoute>
     ),
     name: 'Editor',

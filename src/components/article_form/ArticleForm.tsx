@@ -1,15 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import Heading from '@/components/heading/Heading';
-import { styled, Button, TextField } from '@mui/material';
-import Stack from '@mui/material/Stack/Stack';
-import { Controller, useForm } from 'react-hook-form';
+import { styled, Button, TextField, Stack } from '@mui/material';
+import { useForm, Controller } from 'react-hook-form';
+import Heading from '../heading/Heading';
 
-const Editor = () => {
-  const { control, handleSubmit } = useForm();
-  const handleOnSubmit = async (data: any) => {
-    console.log(data);
-  };
-
+const ArticleForm = () => {
+  const { control } = useForm();
   const SubmitButton = styled(Button)({
     background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
     color: 'rgba(30, 41, 59, 1)',
@@ -46,7 +40,6 @@ const Editor = () => {
       color: 'white',
     },
   }));
-
   const fields = [
     { name: 'title', type: 'text', label: 'Title', isRequired: true },
     { name: 'subtitle', type: 'text', label: 'Subtitle', isOptional: true },
@@ -62,12 +55,6 @@ const Editor = () => {
       label: 'Featured Image',
       isRequired: true,
     },
-    {
-      name: 'mainContent',
-      type: 'textarea',
-      label: 'Main Content',
-      isRequired: true,
-    },
     { name: 'tags', type: 'text', label: 'Tags', isRequired: true },
     { name: 'category', type: 'text', label: 'Category', isOptional: true },
     { name: 'readTime', type: 'number', label: 'Read Time', isRequired: true },
@@ -78,11 +65,9 @@ const Editor = () => {
       isRequired: true,
     },
   ];
-
   return (
     <Stack>
       <form
-        onSubmit={handleSubmit(handleOnSubmit)}
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -117,4 +102,4 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default ArticleForm;
