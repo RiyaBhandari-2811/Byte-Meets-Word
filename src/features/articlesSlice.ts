@@ -16,7 +16,7 @@ export const articlesSlice = createApi({
         `/articles/tag/${tagId}?page=${page}`,
     }),
     getArticleById: builder.query<IArticleDetail, string>({
-      query: (articleId) => `/articles/${articleId}`,
+      query: (articleId) => `/articles?articleId=${articleId}`,
     }),
     getAllArticles: builder.query<IGetArticlesResponse, number>({
       query: (page) => `/articles?page=${page}`,
