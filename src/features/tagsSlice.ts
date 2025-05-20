@@ -11,7 +11,17 @@ export const tagsSlice = createApi({
     getTags: builder.query<IGetTagsResponse, number>({
       query: (page) => `tags?page=${page}`,
     }),
+    createTag: builder.mutation({
+      query: (tags) => ({
+        url: '/tags',
+        method: 'POST',
+        body: tags,
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetTagsQuery } = tagsSlice;
+export const { useGetTagsQuery, useCreateTagMutation } = tagsSlice;
