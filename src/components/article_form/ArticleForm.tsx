@@ -2,6 +2,7 @@
 
 import { styled, TextField, Stack, Button } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
+import TagSelect from '../tag_select/TagSelect ';
 
 interface ArticleFormProps {
   handleNext: (data: any) => void;
@@ -67,7 +68,7 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
       label: 'Featured Image',
       isRequired: false,
     },
-    { name: 'tags', type: 'text', label: 'Tags', isRequired: true },
+    // { name: 'tags', type: 'text', label: 'Tags', isRequired: true },
     { name: 'category', type: 'text', label: 'Category', isOptional: true },
     { name: 'readTime', type: 'number', label: 'Read Time', isRequired: true },
     {
@@ -149,6 +150,11 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
             );
           }
         })}
+        <Controller
+          name={'tags'}
+          control={control}
+          render={() => <TagSelect control={control} />}
+        />
         <Button type="submit" variant="contained" color="primary">
           NEXT
         </Button>
