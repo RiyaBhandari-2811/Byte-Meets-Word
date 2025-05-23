@@ -3,6 +3,7 @@
 import { styled, TextField, Stack, Button } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import TagSelect from '../tag_select/TagSelect ';
+import CategorySelect from '../category_select/CategorySelect';
 
 interface ArticleFormProps {
   handleNext: (data: any) => void;
@@ -69,7 +70,7 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
       isRequired: false,
     },
     // { name: 'tags', type: 'text', label: 'Tags', isRequired: true },
-    { name: 'category', type: 'text', label: 'Category', isOptional: true },
+    // { name: 'category', type: 'text', label: 'Category', isOptional: true },
     { name: 'readTime', type: 'number', label: 'Read Time', isRequired: true },
     {
       name: 'isActive',
@@ -154,6 +155,11 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
           name={'tags'}
           control={control}
           render={() => <TagSelect control={control} />}
+        />
+        <Controller
+          name={'tags'}
+          control={control}
+          render={() => <CategorySelect control={control} />}
         />
         <Button type="submit" variant="contained" color="primary">
           NEXT

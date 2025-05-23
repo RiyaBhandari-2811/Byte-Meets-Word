@@ -7,6 +7,7 @@ import { articlesSlice } from '@/features/articlesSlice';
 import { contentRailSlice } from '@/features/contentRailSlice';
 import { coursesSlice } from '@/features/courseSlice';
 import { userSlice } from '@/features/userSlice';
+import { categoriesSlice } from '@/features/categoriesSlice';
 
 const persistConfig = {
   key: 'root',
@@ -25,7 +26,8 @@ export const store = configureStore({
       articlesSlice.middleware,
       contentRailSlice.middleware,
       coursesSlice.middleware,
-      userSlice.middleware
+      userSlice.middleware,
+      categoriesSlice.middleware
     ),
 });
 
