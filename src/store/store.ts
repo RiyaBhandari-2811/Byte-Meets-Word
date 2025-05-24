@@ -12,6 +12,7 @@ import { categoriesSlice } from '@/features/categoriesSlice';
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['userStore'], // only persist auth if needed
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

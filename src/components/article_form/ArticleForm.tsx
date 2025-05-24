@@ -161,7 +161,7 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
           control={control}
           render={() => <CategorySelect control={control} />}
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="info">
           NEXT
         </Button>
       </form>

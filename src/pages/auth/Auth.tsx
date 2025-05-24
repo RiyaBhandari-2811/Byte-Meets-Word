@@ -6,26 +6,43 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
+  Link,
   OutlinedInput,
   Stack,
+  Typography,
 } from '@mui/material';
 import styled from '@mui/material/styles/styled';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useCreateUserMutation } from '@/features/userSlice';
+import { useCreateUserMutation, useSignInMutation } from '@/features/userSlice';
+import { useDispatch } from 'react-redux';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
+import { setUser } from '@/features/store_slice/userStoreSlice';
 
 const Auth = () => {
-  const [signup] = useCreateUserMutation();
+  const [signup, { isSuccess: isSignUpSuccess }] = useCreateUserMutation();
+  const [signin, { isSuccess: isSignInSuccess }] = useSignInMutation();
   const { control, handleSubmit } = useForm();
   const [action, setAction] = useState('signUp');
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const routeTo: NavigateFunction = navigateToRoute();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const SubmitButton = styled(Button)({
+  useEffect(() => {
+    if (isSignUpSuccess) {
+      setAction('signIn');
+    }
+    if (isSignInSuccess) {
+      routeTo('/editor');
+    }
+  }, [isSignUpSuccess, isSignInSuccess]);
+
+  const GradientButton = styled(Button)({
     background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
     color: 'rgba(30, 41, 59, 1)',
     textTransform: 'none',
@@ -64,7 +81,30 @@ const Auth = () => {
 
   const handleOnSubmit = async (data: any) => {
     console.log(data);
-    await signup(data);
+
+    if (action === 'signUp') {
+      await signup({ ...data, role: 'admin' });
+    } else {
+      try {
+        const result = await signin({
+          email: data.email,
+          password: data.password,
+        }).unwrap();
+        console.log(result);
+
+        if (result?.token) {
+          dispatch(
+            setUser({
+              isAuthorized: true,
+              role: 'admin',
+              expiry: result.exp,
+            })
+          );
+        }
+      } catch (err: any) {
+        console.error(err);
+      }
+    }
   };
 
   return (
@@ -80,7 +120,7 @@ const Auth = () => {
       >
         <Heading
           title={action === 'signUp' ? 'Sign Up' : 'Sign In'}
-          styleProps={{ marginBottom: '1rem' }}
+          styleProps={{ marginBottom: '1rem', textAlign: 'center' }}
         />
         {action === 'signUp' && (
           <Controller
@@ -172,16 +212,32 @@ const Auth = () => {
           )}
           control={control}
         />
-        <Stack direction={'row'} gap={2}>
-          <SubmitButton type="submit" onClick={() => setAction('signUp')}>
-            {' '}
-            Sign Up{' '}
-          </SubmitButton>
-          <SubmitButton onClick={() => setAction('signIn')}>
-            {' '}
-            Sign In{' '}
-          </SubmitButton>
-        </Stack>
+
+        {action === 'signUp' ? (
+          <Typography>
+            Already have the account?{' '}
+            <Link
+              color="info"
+              onClick={() => setAction('signIn')}
+              sx={{ cursor: 'pointer' }}
+            >
+              Sign In
+            </Link>
+          </Typography>
+        ) : (
+          <Typography>
+            Create Account :{' '}
+            <Link
+              color="info"
+              onClick={() => setAction('signUp')}
+              sx={{ cursor: 'pointer' }}
+            >
+              Sign Up
+            </Link>
+          </Typography>
+        )}
+
+        <GradientButton type="submit">Submit</GradientButton>
       </form>
     </Stack>
   );
