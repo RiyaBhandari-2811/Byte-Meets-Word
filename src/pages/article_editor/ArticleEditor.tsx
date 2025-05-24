@@ -6,8 +6,12 @@ import Heading from '@/components/heading/Heading';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack/Stack';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/features/store_slice/userStoreSlice';
 
 const ArticleEditor = () => {
+  const dispatch = useDispatch();
+
   const [page, setPage] = useState(0);
   const defaultValues = {
     title: '',
@@ -27,9 +31,13 @@ const ArticleEditor = () => {
     setPage(page + 1);
   };
 
+  const handlePrev = () => {
+    setPage(page - 1);
+  };
+
   const ActivePage = () => {
     if (page === 1) {
-      return <Editor formData={formData} />;
+      return <Editor formData={formData} handlePrev={handlePrev} />;
     } else if (page === 0) {
       return (
         <ArticleForm handleNext={handleNext} defaultValues={defaultValues} />
@@ -43,17 +51,21 @@ const ArticleEditor = () => {
 
   return (
     <Stack>
-      <Heading title={title[page]} styleProps={{ marginBottom: '1rem' }} />
-      <ActivePage />
-      <Stack>
+      <Stack
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+      >
+        <Heading title={title[page]} styleProps={{ marginBottom: '1rem' }} />
         <Button
+          variant="contained"
           color="info"
-          disabled={page < 1}
-          onClick={() => setPage(page - 1)}
+          onClick={() => dispatch(logout())}
         >
-          Prev
+          Logout
         </Button>
       </Stack>
+      <ActivePage />
     </Stack>
   );
 };

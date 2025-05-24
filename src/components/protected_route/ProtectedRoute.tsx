@@ -38,7 +38,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   console.log(userStore);
   const isAuthenticated = userStore.isAuthorized && userStore.role === 'admin';
 
-  return isAuthenticated ? children : <Navigate to="/signIn" replace />;
+  return isAuthenticated ? children : <Navigate to="/auth" replace />;
 };
 
 export default ProtectedRoute;

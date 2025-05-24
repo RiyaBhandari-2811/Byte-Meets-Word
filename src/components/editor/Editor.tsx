@@ -1,9 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { Stack } from '@mui/material';
 import Button from '@mui/material/Button/Button';
 import styled from '@mui/material/styles/styled';
 
-const Editor = ({ formData }: { formData: any }) => {
+const Editor = ({
+  formData,
+  handlePrev,
+}: {
+  formData: any;
+  handlePrev: any;
+}) => {
   const SubmitButton = styled(Button)({
     background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
     color: 'rgba(30, 41, 59, 1)',
@@ -18,7 +25,19 @@ const Editor = ({ formData }: { formData: any }) => {
 
   console.log('formData: ', formData);
 
-  return <SubmitButton> Save the Article </SubmitButton>;
+  return (
+    <Stack>
+      <SubmitButton> Save the Article </SubmitButton>
+      <Button
+        type="submit"
+        variant="contained"
+        color="info"
+        onClick={handlePrev}
+      >
+        PREV
+      </Button>
+    </Stack>
+  );
 };
 
 export default Editor;
