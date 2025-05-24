@@ -13,20 +13,34 @@ import {
 } from '@mui/material';
 import styled from '@mui/material/styles/styled';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useCreateUserMutation, useSignInMutation } from '@/features/userSlice';
+import { useDispatch } from 'react-redux';
+import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
+import { setUser } from '@/features/store_slice/userStoreSlice';
 
 const Auth = () => {
-  const [signup] = useCreateUserMutation();
-  const [signin] = useSignInMutation();
+  const [signup, { isSuccess: isSignUpSuccess }] = useCreateUserMutation();
+  const [signin, { isSuccess: isSignInSuccess }] = useSignInMutation();
   const { control, handleSubmit } = useForm();
   const [action, setAction] = useState('signUp');
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const routeTo: NavigateFunction = navigateToRoute();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  useEffect(() => {
+    if (isSignUpSuccess) {
+      setAction('signIn');
+    }
+    if (isSignInSuccess) {
+      routeTo('/editor');
+    }
+  }, [isSignUpSuccess, isSignInSuccess]);
 
   const GradientButton = styled(Button)({
     background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
@@ -69,9 +83,27 @@ const Auth = () => {
     console.log(data);
 
     if (action === 'signUp') {
-      await signup(data);
+      await signup({ ...data, role: 'admin' });
     } else {
-      await signin(data);
+      try {
+        const result = await signin({
+          email: data.email,
+          password: data.password,
+        }).unwrap();
+        console.log(result);
+
+        if (result?.token) {
+          dispatch(
+            setUser({
+              isAuthorized: true,
+              role: 'admin',
+              expiry: result.exp,
+            })
+          );
+        }
+      } catch (err: any) {
+        console.error(err);
+      }
     }
   };
 

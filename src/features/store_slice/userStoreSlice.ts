@@ -5,19 +5,22 @@ export const userStoreSlice = createSlice({
   initialState: {
     isAuthorized: false,
     role: null,
+    expiry: 0,
   },
   reducers: {
     setUser: (state, action) => {
       state.isAuthorized = action.payload.isAuthorized;
       state.role = action.payload.role;
+      state.expiry = action.payload.expiry;
     },
     logout: (state) => {
       state.isAuthorized = false;
       state.role = null;
+      state.expiry = 0;
     },
   },
 });
 
-export const { setUser } = userStoreSlice.actions;
+export const { setUser, logout } = userStoreSlice.actions;
 
 export default userStoreSlice.reducer;
