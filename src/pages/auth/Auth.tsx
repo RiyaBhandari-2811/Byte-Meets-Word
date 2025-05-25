@@ -23,8 +23,15 @@ import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 import { setUser } from '@/features/store_slice/userStoreSlice';
 
 const Auth = () => {
-  const [signup, { isSuccess: isSignUpSuccess }] = useCreateUserMutation();
-  const [signin, { isSuccess: isSignInSuccess }] = useSignInMutation();
+  const [
+    signup,
+    { isSuccess: isSignUpSuccess, isError: isSignUpError, error: signupError },
+  ] = useCreateUserMutation();
+  const [
+    signin,
+    { isSuccess: isSignInSuccess, isError: isSignInError, error: signinError },
+  ] = useSignInMutation();
+  const [message, setMessage] = useState<string>('');
   const { control, handleSubmit } = useForm();
   const [action, setAction] = useState('signUp');
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +47,21 @@ const Auth = () => {
     if (isSignInSuccess) {
       routeTo('/editor');
     }
-  }, [isSignUpSuccess, isSignInSuccess]);
+    if (isSignUpError || isSignInError) {
+      const errorMessage = isSignInError
+        ? (signinError as any)?.data?.message || 'Sign in failed'
+        : (signupError as any)?.data?.message || 'Sign up failed';
+
+      setMessage(errorMessage);
+    }
+  }, [
+    isSignUpSuccess,
+    isSignInSuccess,
+    isSignUpError,
+    isSignInError,
+    signinError,
+    signupError,
+  ]);
 
   const GradientButton = styled(Button)({
     background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
@@ -80,8 +101,6 @@ const Auth = () => {
   }));
 
   const handleOnSubmit = async (data: any) => {
-    console.log(data);
-
     if (action === 'signUp') {
       await signup({ ...data, role: 'admin' });
     } else {
@@ -238,6 +257,10 @@ const Auth = () => {
         )}
 
         <GradientButton type="submit">Submit</GradientButton>
+
+        {(isSignInError || isSignUpError) && (
+          <Typography color="error">{message}</Typography>
+        )}
       </form>
     </Stack>
   );
