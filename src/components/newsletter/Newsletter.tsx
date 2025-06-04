@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Button,
   InputAdornment,
@@ -8,8 +9,13 @@ import {
 } from '@mui/material';
 
 import Heading from '../heading/Heading';
+import { useSubscribeMutation } from '@/features/subscribeSlice';
+import { useState } from 'react';
 
 const Newsletter: React.FC = () => {
+  const [subscribe] = useSubscribeMutation();
+  const [email, setEmail] = useState('');
+
   const StyledTextField = styled(TextField)({
     flex: 1,
     '& .MuiInputBase-root': {
@@ -34,6 +40,11 @@ const Newsletter: React.FC = () => {
       background: 'linear-gradient(90deg, #1c92ff, #27d7ff)',
     },
   });
+
+  const handleSubscribe = (e: any) => {
+    e.preventDefault();
+    subscribe(email);
+  };
 
   return (
     <Stack
@@ -69,11 +80,19 @@ const Newsletter: React.FC = () => {
         <StyledTextField
           variant="outlined"
           placeholder="Enter your Email"
+          value={email}
+          onChange={(e) => {
+            e.preventDefault();
+            console.log(e.target.value);
+            setEmail(e.target.value);
+          }}
           slotProps={{
             input: {
               endAdornment: (
                 <InputAdornment position="end">
-                  <SubscribeButton>Subscribe</SubscribeButton>
+                  <SubscribeButton onClick={(e) => handleSubscribe(e)}>
+                    Subscribe
+                  </SubscribeButton>
                 </InputAdornment>
               ),
             },
