@@ -10,11 +10,11 @@ import {
 
 import Heading from '../heading/Heading';
 import { useSubscribeMutation } from '@/features/subscribeSlice';
-import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 const Newsletter: React.FC = () => {
   const [subscribe] = useSubscribeMutation();
-  const [email, setEmail] = useState('');
+  const { control, handleSubmit } = useForm();
 
   const StyledTextField = styled(TextField)({
     flex: 1,
@@ -41,9 +41,8 @@ const Newsletter: React.FC = () => {
     },
   });
 
-  const handleSubscribe = (e: any) => {
-    e.preventDefault();
-    subscribe(email);
+  const handleSubscribe = async (data: any) => {
+    await subscribe({ email: data.email });
   };
 
   return (
@@ -77,30 +76,33 @@ const Newsletter: React.FC = () => {
         </Typography>
       </Stack>
       <Stack width={{ xs: '100%', sm: '100%', md: '50%' }}>
-        <StyledTextField
-          variant="outlined"
-          placeholder="Enter your Email"
-          value={email}
-          onChange={(e) => {
-            e.preventDefault();
-            console.log(e.target.value);
-            setEmail(e.target.value);
-          }}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <SubscribeButton onClick={(e) => handleSubscribe(e)}>
-                    Subscribe
-                  </SubscribeButton>
-                </InputAdornment>
-              ),
-            },
-          }}
-          InputProps={{
-            disableUnderline: true,
-          }}
-        />
+        <form onSubmit={handleSubmit(handleSubscribe)}>
+          <Controller
+            name="email"
+            render={({ field }) => (
+              <StyledTextField
+                {...field}
+                variant="outlined"
+                placeholder="Enter your Email"
+                slotProps={{
+                  input: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <SubscribeButton type="submit">
+                          Subscribe
+                        </SubscribeButton>
+                      </InputAdornment>
+                    ),
+                  },
+                }}
+                InputProps={{
+                  disableUnderline: true,
+                }}
+              />
+            )}
+            control={control}
+          />
+        </form>
       </Stack>
     </Stack>
   );
