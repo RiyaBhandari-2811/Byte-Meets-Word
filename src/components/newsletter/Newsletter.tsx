@@ -8,13 +8,30 @@ import {
   Typography,
 } from '@mui/material';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Heading from '../heading/Heading';
 import { useSubscribeMutation } from '@/features/subscribeSlice';
 import { Controller, useForm } from 'react-hook-form';
 
 const Newsletter: React.FC = () => {
   const [subscribe] = useSubscribeMutation();
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: '',
+    },
+  });
+
+  const onError = (errors: any) => {
+    if (errors.email) {
+      toast.error(errors.email.message);
+    }
+  };
 
   const StyledTextField = styled(TextField)({
     flex: 1,
@@ -54,6 +71,7 @@ const Newsletter: React.FC = () => {
       gap={{ xs: 2, md: 5 }}
       flexWrap={{ xs: 'wrap', sm: 'wrap', md: 'nowrap' }}
     >
+      <ToastContainer />
       <Stack
         width={{ xs: '100%', sm: '100%', md: '50%' }}
         alignItems={{ xs: 'center', sm: 'center', md: 'flex-start' }}
@@ -76,9 +94,17 @@ const Newsletter: React.FC = () => {
         </Typography>
       </Stack>
       <Stack width={{ xs: '100%', sm: '100%', md: '50%' }}>
-        <form onSubmit={handleSubmit(handleSubscribe)}>
+        <form onSubmit={(handleSubmit(handleSubscribe), onError(errors))}>
           <Controller
             name="email"
+            control={control}
+            rules={{
+              required: 'Email is required',
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Enter a valid email address',
+              },
+            }}
             render={({ field }) => (
               <StyledTextField
                 {...field}
@@ -100,7 +126,6 @@ const Newsletter: React.FC = () => {
                 }}
               />
             )}
-            control={control}
           />
         </form>
       </Stack>
