@@ -8,30 +8,26 @@ import {
   Typography,
 } from '@mui/material';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import Heading from '../heading/Heading';
 import { useSubscribeMutation } from '@/features/subscribeSlice';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, FieldErrors, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const Newsletter: React.FC = () => {
-  const [subscribe] = useSubscribeMutation();
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const [subscribe, { isLoading }] = useSubscribeMutation();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>(
+    'success'
+  );
+
+  const { control, handleSubmit, reset } = useForm({
     defaultValues: {
       email: '',
     },
   });
-
-  const onError = (errors: any) => {
-    if (errors.email) {
-      toast.error(errors.email.message);
-    }
-  };
 
   const StyledTextField = styled(TextField)({
     flex: 1,
@@ -59,7 +55,33 @@ const Newsletter: React.FC = () => {
   });
 
   const handleSubscribe = async (data: any) => {
-    await subscribe({ email: data.email });
+    try {
+      await subscribe({ email: data.email });
+      setSnackbarMessage('Verification Email Sent!');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
+      reset();
+    } catch (error) {
+      console.log('Newsletter error', error);
+      setSnackbarMessage('Something went wrong. Please try again.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
+    }
+  };
+
+  const onError = (errors: FieldErrors) => {
+    if (errors.email) {
+      const message =
+        typeof errors.email === 'object' &&
+        errors.email !== null &&
+        'message' in errors.email &&
+        typeof errors.email.message === 'string'
+          ? errors.email.message
+          : 'Validation error';
+      setSnackbarMessage(message);
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
+    }
   };
 
   return (
@@ -71,7 +93,21 @@ const Newsletter: React.FC = () => {
       gap={{ xs: 2, md: 5 }}
       flexWrap={{ xs: 'wrap', sm: 'wrap', md: 'nowrap' }}
     >
-      <ToastContainer />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackbarOpen(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert
+          onClose={() => setSnackbarOpen(false)}
+          severity={snackbarSeverity}
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
+
       <Stack
         width={{ xs: '100%', sm: '100%', md: '50%' }}
         alignItems={{ xs: 'center', sm: 'center', md: 'flex-start' }}
@@ -94,7 +130,7 @@ const Newsletter: React.FC = () => {
         </Typography>
       </Stack>
       <Stack width={{ xs: '100%', sm: '100%', md: '50%' }}>
-        <form onSubmit={(handleSubmit(handleSubscribe), onError(errors))}>
+        <form onSubmit={handleSubmit(handleSubscribe, onError)}>
           <Controller
             name="email"
             control={control}
@@ -114,7 +150,7 @@ const Newsletter: React.FC = () => {
                   input: {
                     endAdornment: (
                       <InputAdornment position="end">
-                        <SubscribeButton type="submit">
+                        <SubscribeButton type="submit" disabled={isLoading}>
                           Subscribe
                         </SubscribeButton>
                       </InputAdornment>
