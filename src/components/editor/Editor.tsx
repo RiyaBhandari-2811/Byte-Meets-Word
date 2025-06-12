@@ -3,6 +3,7 @@
 import { Stack } from '@mui/material';
 import Button from '@mui/material/Button/Button';
 import styled from '@mui/material/styles/styled';
+import TextEditor from '../text_editor/TextEditor';
 
 const Editor = ({
   formData,
@@ -27,6 +28,7 @@ const Editor = ({
 
   return (
     <Stack>
+      <TextEditor />
       <SubmitButton> Save the Article </SubmitButton>
       <Button
         type="submit"
