@@ -1,5 +1,5 @@
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { Editor } from '@tiptap/react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
   Heading1,
   Heading2,
@@ -13,6 +13,8 @@ import {
   Strikethrough,
   Subscript,
   Superscript,
+  PaintRoller,
+  Highlighter,
   ListOrdered,
   List,
   ListChecks,
@@ -30,10 +32,50 @@ import {
   Redo2,
 } from 'lucide-react';
 
-const MenuBar = ({ editor }: { editor: Editor }) => {
-  if (!editor) {
-    return null;
+import GifBoxOutlinedIcon from '@mui/icons-material/GifBoxOutlined';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Editor } from '@tiptap/react';
+import { Popper, TextField, Button, Box } from '@mui/material';
+import { useState, useRef, useCallback } from 'react';
+
+const MenuBar = ({ editor, lowlight }: { editor: Editor; lowlight: any }) => {
+  const [linkInputOpen, setLinkInputOpen] = useState(false);
+  const [linkUrl, setLinkUrl] = useState('');
+  const anchorRef = useRef<HTMLDivElement | null>(null);
+  const [showPicker, setShowPicker] = useState(false);
+  const [color, setColor] = useState('#000000');
+  const [codeLangPopperOpen, setCodeLangPopperOpen] = useState(false);
+  const [selectedNodePos, setSelectedNodePos] = useState<number | null>(null);
+  const [language, setLanguage] = useState('kotlin');
+
+  function applyLink() {
+    if (!editor || !linkUrl) return;
+    const { empty } = editor.state.selection;
+    if (empty) return;
+
+    editor
+      .chain()
+      .focus()
+      .extendMarkRange('link')
+      .setLink({ href: linkUrl })
+      .run();
+
+    setLinkInputOpen(false);
+    setLinkUrl('');
   }
+
+  const applyColor = () => {
+    editor?.chain().focus().setColor(color).run();
+    setShowPicker(false);
+  };
+
+  const addImage = useCallback(() => {
+    const url = window.prompt('URL');
+
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+  }, [editor]);
 
   const Options = [
     {
@@ -95,6 +137,16 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
       icon: <Superscript />,
       onClick: () => editor.chain().focus().toggleSuperscript().run(),
       preesed: editor.isActive('superscript'),
+    },
+    {
+      icon: <PaintRoller />,
+      onClick: () => setShowPicker(!showPicker),
+      preesed: editor.isActive('textStyle', { color: color }),
+    },
+    {
+      icon: <Highlighter />,
+      onClick: () => editor.chain().focus().toggleHighlight().run(),
+      preesed: editor.isActive('highlight'),
     },
     {
       icon: <ListOrdered />,
@@ -191,8 +243,12 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
     },
   ];
 
+  if (!editor) {
+    return null;
+  }
+
   return (
-    <div>
+    <div ref={anchorRef}>
       <ToggleButtonGroup
         sx={{
           display: 'flex',
@@ -215,6 +271,116 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
+
+      <Popper
+        open={codeLangPopperOpen}
+        anchorEl={anchorRef.current}
+        placement="bottom-start"
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+            bgcolor: 'white',
+            p: 2,
+            boxShadow: 3,
+            borderRadius: 1,
+            minWidth: 200,
+          }}
+        >
+          <TextField
+            select
+            label="Language"
+            value={language}
+            onChange={(e) => {
+              const newLang = e.target.value;
+              setLanguage(newLang);
+              if (selectedNodePos !== null) {
+                editor
+                  .chain()
+                  .focus()
+                  .command(({ tr }) => {
+                    tr.setNodeMarkup(selectedNodePos, undefined, {
+                      language: newLang,
+                    });
+                    return true;
+                  })
+                  .run();
+                setCodeLangPopperOpen(false);
+              }
+            }}
+            SelectProps={{ native: true }}
+          >
+            {lowlight.listLanguages().map((lang: any) => (
+              <option key={lang} value={lang}>
+                {lang}
+              </option>
+            ))}
+          </TextField>
+        </Box>
+      </Popper>
+
+      <Popper
+        open={showPicker}
+        anchorEl={anchorRef.current}
+        placement="bottom-start"
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            bgcolor: 'white',
+            p: 2,
+            boxShadow: 3,
+            borderRadius: 1,
+            alignItems: 'center',
+          }}
+        >
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            style={{
+              width: 40,
+              height: 40,
+              padding: 0,
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          />
+          <Button variant="contained" onClick={applyColor}>
+            Apply
+          </Button>
+        </Box>
+      </Popper>
+
+      <Popper
+        open={linkInputOpen}
+        anchorEl={anchorRef.current}
+        placement="bottom-start"
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            bgcolor: 'white',
+            p: 2,
+            boxShadow: 3,
+            borderRadius: 1,
+          }}
+        >
+          <TextField
+            size="small"
+            placeholder="Enter URL"
+            value={linkUrl}
+            onChange={(e) => setLinkUrl(e.target.value)}
+          />
+          <Button variant="contained" onClick={applyLink}>
+            Add Link
+          </Button>
+        </Box>
+      </Popper>
     </div>
   );
 };
