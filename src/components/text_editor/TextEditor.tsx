@@ -1,7 +1,7 @@
 import { EditorContent, useEditor } from '@tiptap/react';
+import './TextEditor.scss';
 import StarterKit from '@tiptap/starter-kit';
 import MenuBar from '../menu_bar/MenuBar';
-import './Tiptap.css';
 import { Stack } from '@mui/material';
 import TextAlign from '@tiptap/extension-text-align';
 import TextStyle from '@tiptap/extension-text-style';

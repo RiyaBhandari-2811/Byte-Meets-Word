@@ -14,6 +14,7 @@ const Editor = ({
 }) => {
   const SubmitButton = styled(Button)({
     background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
+    width: 'max-content',
     color: 'rgba(30, 41, 59, 1)',
     textTransform: 'none',
     fontWeight: 'bold',
@@ -27,17 +28,19 @@ const Editor = ({
   console.log('formData: ', formData);
 
   return (
-    <Stack>
+    <Stack justifyContent={'space-between'} spacing={5}>
       <TextEditor />
-      <SubmitButton> Save the Article </SubmitButton>
-      <Button
-        type="submit"
-        variant="contained"
-        color="info"
-        onClick={handlePrev}
-      >
-        PREV
-      </Button>
+      <Stack flexDirection={'row'} justifyContent={'space-between'}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="info"
+          onClick={handlePrev}
+        >
+          PREV
+        </Button>
+        <SubmitButton> Save the Article </SubmitButton>
+      </Stack>
     </Stack>
   );
 };

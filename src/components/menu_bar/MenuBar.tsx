@@ -17,7 +17,6 @@ import {
   Highlighter,
   ListOrdered,
   List,
-  ListChecks,
   ImagePlus,
   Link,
   Table,
@@ -159,11 +158,6 @@ const MenuBar = ({ editor, lowlight }: { editor: Editor; lowlight: any }) => {
       preesed: editor.isActive('bulletList'),
     },
     {
-      icon: <ListChecks />,
-      onClick: () => editor.chain().focus().toggleTaskList().run(),
-      preesed: editor.isActive('taskList'),
-    },
-    {
       icon: <ImagePlus />,
       onClick: () => addImage(),
       preesed: false,
@@ -265,6 +259,7 @@ const MenuBar = ({ editor, lowlight }: { editor: Editor; lowlight: any }) => {
             sx={{
               border: '1px solid grey',
               borderRadius: '10px',
+              color: '#0ea5e9',
             }}
           >
             {option.icon}
