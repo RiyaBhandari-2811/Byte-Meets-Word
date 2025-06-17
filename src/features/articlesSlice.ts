@@ -31,6 +31,20 @@ export const articlesSlice = createApi({
       query: ({ categoryId, page }) =>
         `/articles/category/${categoryId}?page=${page}`,
     }),
+    createArticle: builder.mutation<
+      IArticleDetail,
+      { payload: Partial<IArticleDetail>; authToken: string }
+    >({
+      query: ({ payload, authToken }) => ({
+        url: '/articles',
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          Authorization: authToken,
+        },
+      }),
+    }),
   }),
 });
 
@@ -39,4 +53,5 @@ export const {
   useGetArticleByIdQuery,
   useGetAllArticlesQuery,
   useGetAllArticlesByCategoryIdQuery,
+  useCreateArticleMutation,
 } = articlesSlice;

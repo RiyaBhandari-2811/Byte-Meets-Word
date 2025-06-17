@@ -27,7 +27,6 @@ const ArticleEditor = () => {
 
   const handleNext = (dataFromStep: any) => {
     setFormData((prev) => ({ ...prev, ...dataFromStep }));
-    console.log(' dataFromStep ' + dataFromStep);
     setPage(page + 1);
   };
 

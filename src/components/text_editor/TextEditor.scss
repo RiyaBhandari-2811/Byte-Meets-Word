@@ -1,15 +1,12 @@
 .editor-div {
-  background-color: #f0f8ff; // ✅ use hex instead of named color "aliceblue"
+  background-color: #f0f8ff;
   width: 75vw;
   min-height: 50vh;
-
-  /* Removed `max-height: auto;` as `auto` is not valid for max-height */
   padding: 10px;
   border: 2px solid rgb(8 132 240);
   border-radius: 10px;
-  color: #000; // ✅ use hex instead of named color "black"
+  color: #000;
 }
-
 
 .tiptap:first-child {
   margin-top: 0;
@@ -22,7 +19,6 @@
   max-width: 100%;
 }
 
-/* ✅ Converted class selector to kebab-case */
 .tiptap img.prose-mirror-selected-node {
   outline: 3px solid var(--purple);
 }

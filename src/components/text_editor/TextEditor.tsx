@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { EditorContent, useEditor } from '@tiptap/react';
 import './TextEditor.scss';
 import StarterKit from '@tiptap/starter-kit';
@@ -20,7 +22,6 @@ import Table from '@tiptap/extension-table';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import TableRow from '@tiptap/extension-table-row';
-import { useState } from 'react';
 
 const lowlight = createLowlight(all);
 
@@ -34,23 +35,23 @@ const extensions = [
   TextAlign.configure({
     types: ['heading', 'paragraph'],
   }),
-  Underline.configure(),
-  Subscript.configure(),
-  Superscript.configure(),
-  Highlight.configure(),
+  Underline,
+  Subscript,
+  Superscript,
+  Highlight,
   Link.configure({
     HTMLAttributes: {
       target: '_blank',
     },
   }),
-  TaskList.configure(),
+  TaskList,
   TaskItem.configure({
     nested: true,
   }),
   Image.configure({
     inline: true,
   }),
-  TextStyle.configure(),
+  TextStyle,
   Color.configure({
     types: ['textStyle'],
   }),
@@ -66,17 +67,19 @@ const extensions = [
   TableCell,
 ];
 
-const TextEditor = () => {
-  const [article] = useState('');
-
+const TextEditor = ({ mainContent, setMainContent }: any) => {
   const editor = useEditor({
     extensions,
+    content: mainContent,
     autofocus: true,
-    content: article,
     editorProps: {
       attributes: {
         class: 'editor-div',
       },
+    },
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML();
+      setMainContent(html);
     },
   });
 
