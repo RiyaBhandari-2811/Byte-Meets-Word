@@ -116,6 +116,7 @@ const Auth = () => {
             setUser({
               isAuthorized: true,
               role: 'admin',
+              token: result.token,
               expiry: result.exp,
             })
           );
