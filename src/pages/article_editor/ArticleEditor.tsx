@@ -17,9 +17,9 @@ const ArticleEditor = () => {
     title: '',
     subtitle: '',
     description: '',
-    featuredImage: '',
-    tags: '',
-    category: '',
+    featureImage: '',
+    tags: null,
+    category: null,
     readTime: '',
     isActive: false,
   };

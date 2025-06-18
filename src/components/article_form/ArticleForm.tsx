@@ -45,7 +45,7 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
       | 'title'
       | 'subtitle'
       | 'description'
-      | 'featuredImage'
+      | 'featureImage'
       | 'tags'
       | 'category'
       | 'readTime'
@@ -64,8 +64,8 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
       isRequired: true,
     },
     {
-      name: 'featuredImage',
-      type: 'file',
+      name: 'featureImage',
+      type: 'url',
       label: 'Featured Image',
       isRequired: false,
     },
