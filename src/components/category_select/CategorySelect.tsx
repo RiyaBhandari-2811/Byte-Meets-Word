@@ -10,7 +10,7 @@ import {
 import { Controller } from 'react-hook-form';
 
 const CategorySelect = ({ control }: { control: any }) => {
-  const { data, isLoading } = useGetCategoriesQuery(1);
+  const { data, isLoading } = useGetCategoriesQuery(0);
 
   const GradientTextField = styled(TextField)(() => ({
     '& .MuiOutlinedInput-root': {
@@ -39,12 +39,12 @@ const CategorySelect = ({ control }: { control: any }) => {
 
   return (
     <Controller
-      name="tags"
+      name="categories"
       control={control}
       render={({ field }) => (
         <Autocomplete
           multiple
-          options={data?.tags || []}
+          options={data?.categories || []}
           getOptionLabel={(option) => option.name}
           isOptionEqualToValue={(option, value) => option._id === value._id}
           onChange={(_, newValue) => {
@@ -70,6 +70,21 @@ const CategorySelect = ({ control }: { control: any }) => {
               }}
             />
           )}
+          slotProps={{
+            chip: {
+              sx: {
+                backgroundColor: 'white',
+                color: 'black',
+                border: '1px solid #ccc',
+                '& .MuiChip-deleteIcon': {
+                  color: 'black',
+                  '&:hover': {
+                    color: 'red',
+                  },
+                },
+              },
+            },
+          }}
         />
       )}
     />
