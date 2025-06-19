@@ -14,7 +14,7 @@ const TagSelect = ({ control }: { control: any }) => {
 
   const GradientTextField = styled(TextField)(() => ({
     '& .MuiOutlinedInput-root': {
-      color: 'black',
+      color: 'white',
       borderRadius: '8px',
       '& fieldset': {
         border: '2px solid var(--quinary)',
@@ -70,6 +70,21 @@ const TagSelect = ({ control }: { control: any }) => {
               }}
             />
           )}
+          slotProps={{
+            chip: {
+              sx: {
+                backgroundColor: 'white',
+                color: 'black',
+                border: '1px solid #ccc',
+                '& .MuiChip-deleteIcon': {
+                  color: 'black',
+                  '&:hover': {
+                    color: 'red',
+                  },
+                },
+              },
+            },
+          }}
         />
       )}
     />
