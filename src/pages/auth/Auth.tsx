@@ -2,6 +2,7 @@
 import Heading from '@/components/heading/Heading';
 import {
   Button,
+  CircularProgress,
   FormControl,
   IconButton,
   InputAdornment,
@@ -25,11 +26,21 @@ import { setUser } from '@/features/store_slice/userStoreSlice';
 const Auth = () => {
   const [
     signup,
-    { isSuccess: isSignUpSuccess, isError: isSignUpError, error: signupError },
+    {
+      isSuccess: isSignUpSuccess,
+      isError: isSignUpError,
+      error: signupError,
+      isLoading: signupLoading,
+    },
   ] = useCreateUserMutation();
   const [
     signin,
-    { isSuccess: isSignInSuccess, isError: isSignInError, error: signinError },
+    {
+      isSuccess: isSignInSuccess,
+      isError: isSignInError,
+      error: signinError,
+      isLoading: signinLoading,
+    },
   ] = useSignInMutation();
   const [message, setMessage] = useState<string>('');
   const { control, handleSubmit } = useForm();
@@ -49,8 +60,8 @@ const Auth = () => {
     }
     if (isSignUpError || isSignInError) {
       const errorMessage = isSignInError
-        ? (signinError as any)?.data?.message || 'Sign in failed'
-        : (signupError as any)?.data?.message || 'Sign up failed';
+        ? (signinError as any)?.data?.error || 'Sign in failed'
+        : (signupError as any)?.data?.error || 'Sign up failed';
 
       setMessage(errorMessage);
     }
@@ -102,6 +113,8 @@ const Auth = () => {
 
   const handleOnSubmit = async (data: any) => {
     if (action === 'signUp') {
+      console.log('DATA', data);
+
       await signup({ ...data, role: 'admin' });
     } else {
       try {
@@ -257,10 +270,20 @@ const Auth = () => {
           </Typography>
         )}
 
-        <GradientButton type="submit">Submit</GradientButton>
+        <GradientButton type="submit" disabled={signinLoading || signupLoading}>
+          {signinLoading || signupLoading ? (
+            <CircularProgress />
+          ) : action === 'signUp' ? (
+            'Sign Up'
+          ) : (
+            'Sign In'
+          )}
+        </GradientButton>
 
         {(isSignInError || isSignUpError) && (
-          <Typography color="error">{message}</Typography>
+          <Typography color="error" textAlign={'center'}>
+            {message}
+          </Typography>
         )}
       </form>
     </Stack>
