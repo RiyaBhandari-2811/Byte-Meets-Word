@@ -24,4 +24,5 @@ export const tagsSlice = createApi({
   }),
 });
 
-export const { useGetTagsQuery, useCreateTagMutation } = tagsSlice;
+export const { useGetTagsQuery, useCreateTagMutation, useLazyGetTagsQuery } =
+  tagsSlice;

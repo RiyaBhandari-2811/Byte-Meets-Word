@@ -1,16 +1,80 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useGetTagsQuery } from '@/features/tagsSlice';
+import { useLazyGetTagsQuery } from '@/features/tagsSlice';
+import { ITag } from '@/types/tag';
 import {
   Autocomplete,
   TextField,
   CircularProgress,
   styled,
 } from '@mui/material';
+import React from 'react';
+import { useCallback, useEffect, useState, forwardRef } from 'react';
 import { Controller } from 'react-hook-form';
+import { Virtuoso } from 'react-virtuoso';
 
 const TagSelect = ({ control }: { control: any }) => {
-  const { data, isLoading } = useGetTagsQuery(0);
+  const [page, setPage] = useState<number>(0);
+  const [options, setOptions] = useState<ITag[]>([]);
+  const [selected, setSelected] = useState<ITag[]>([]);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
+
+  const [trigger, { isFetching }] = useLazyGetTagsQuery(); // <-- FIXED
+
+  const fetchOptions = useCallback(async () => {
+    if (isFetching || !hasMore) return;
+
+    try {
+      const res = await trigger(page).unwrap(); // <-- FIXED
+      const newItems = res.tags;
+      const totalPages = res.totalPages;
+
+      setOptions((prev) => [...prev, ...newItems]);
+
+      if (page + 1 >= totalPages) {
+        setHasMore(false);
+      } else {
+        setPage((prev) => prev + 1);
+      }
+    } catch (err) {
+      console.error('Error fetching tags:', err);
+    }
+  }, [page, hasMore, isFetching, trigger]);
+
+  useEffect(() => {
+    if (open && options.length === 0) {
+      fetchOptions();
+    }
+  }, [open]);
+
+  const ListboxComponent = forwardRef<
+    HTMLUListElement,
+    React.HTMLAttributes<HTMLElement>
+  >(function ListboxComponent(props, ref) {
+    const { children, ...rest } = props;
+    const childCount = React.Children.count(children);
+
+    return (
+      <ul
+        {...rest}
+        ref={ref}
+        style={{ height: 300, padding: 0, margin: 0, listStyle: 'none' }}
+      >
+        <Virtuoso
+          style={{ height: '100%' }}
+          totalCount={React.Children.count(children)}
+          itemContent={(index) => React.Children.toArray(children)[index]}
+          rangeChanged={({ endIndex }) => {
+            // Trigger fetch when near bottom (e.g. last 5 items)
+            if (endIndex >= childCount - 5) {
+              fetchOptions();
+            }
+          }}
+        />
+      </ul>
+    );
+  });
 
   const GradientTextField = styled(TextField)(() => ({
     '& .MuiOutlinedInput-root': {
@@ -44,15 +108,19 @@ const TagSelect = ({ control }: { control: any }) => {
       render={({ field }) => (
         <Autocomplete
           multiple
-          options={data?.tags || []}
-          getOptionLabel={(option) => option.name}
-          isOptionEqualToValue={(option, value) => option._id === value._id}
+          disableListWrap
+          options={options}
+          open={open}
+          onOpen={() => setOpen(true)}
+          onClose={() => setOpen(false)}
+          loading={isFetching}
+          value={selected}
           onChange={(_, newValue) => {
-            if (newValue.length <= 3) {
-              field.onChange(newValue);
-            }
+            setSelected(newValue);
+            field.onChange(newValue);
           }}
-          value={field.value || []}
+          getOptionLabel={(option) => option.name}
+          isOptionEqualToValue={(a, b) => a._id === b._id}
           renderInput={(params) => (
             <GradientTextField
               {...params}
@@ -63,13 +131,14 @@ const TagSelect = ({ control }: { control: any }) => {
                 ...params.InputProps,
                 endAdornment: (
                   <>
-                    {isLoading ? <CircularProgress size={20} /> : null}
+                    {isFetching ? <CircularProgress size={20} /> : null}
                     {params.InputProps.endAdornment}
                   </>
                 ),
               }}
             />
           )}
+          slots={{ listbox: ListboxComponent }}
           slotProps={{
             chip: {
               sx: {
