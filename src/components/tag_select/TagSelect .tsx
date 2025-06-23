@@ -20,13 +20,13 @@ const TagSelect = ({ control }: { control: any }) => {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [open, setOpen] = useState<boolean>(false);
 
-  const [trigger, { isFetching }] = useLazyGetTagsQuery(); // <-- FIXED
+  const [trigger, { isFetching }] = useLazyGetTagsQuery();
 
   const fetchOptions = useCallback(async () => {
     if (isFetching || !hasMore) return;
 
     try {
-      const res = await trigger(page).unwrap(); // <-- FIXED
+      const res = await trigger(page).unwrap();
       const newItems = res.tags;
       const totalPages = res.totalPages;
 
@@ -66,7 +66,6 @@ const TagSelect = ({ control }: { control: any }) => {
           totalCount={React.Children.count(children)}
           itemContent={(index) => React.Children.toArray(children)[index]}
           rangeChanged={({ endIndex }) => {
-            // Trigger fetch when near bottom (e.g. last 5 items)
             if (endIndex >= childCount - 5) {
               fetchOptions();
             }

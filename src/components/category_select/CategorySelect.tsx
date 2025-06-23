@@ -1,20 +1,83 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useGetCategoriesQuery } from '@/features/categoriesSlice';
+import { useLazyGetCategoriesQuery } from '@/features/categoriesSlice';
+import { ICategory } from '@/types/categories';
 import {
   Autocomplete,
   TextField,
   CircularProgress,
   styled,
 } from '@mui/material';
+import React from 'react';
+import { useCallback, useEffect, useState, forwardRef } from 'react';
 import { Controller } from 'react-hook-form';
+import { Virtuoso } from 'react-virtuoso';
 
 const CategorySelect = ({ control }: { control: any }) => {
-  const { data, isLoading } = useGetCategoriesQuery(0);
+  const [page, setPage] = useState<number>(0);
+  const [options, setOptions] = useState<ICategory[]>([]);
+  const [selected, setSelected] = useState<ICategory | null>(null);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
+
+  const [trigger, { isFetching }] = useLazyGetCategoriesQuery();
+
+  const fetchOptions = useCallback(async () => {
+    if (isFetching || !hasMore) return;
+
+    try {
+      const res = await trigger(page).unwrap();
+      const newItems = res.categories;
+      const totalPages = res.totalPages;
+
+      setOptions((prev) => [...prev, ...newItems]);
+
+      if (page + 1 >= totalPages) {
+        setHasMore(false);
+      } else {
+        setPage((prev) => prev + 1);
+      }
+    } catch (err) {
+      console.error('Error fetching tags:', err);
+    }
+  }, [page, hasMore, isFetching, trigger]);
+
+  useEffect(() => {
+    if (open && options.length === 0) {
+      fetchOptions();
+    }
+  }, [open]);
+
+  const ListboxComponent = forwardRef<
+    HTMLUListElement,
+    React.HTMLAttributes<HTMLElement>
+  >(function ListboxComponent(props, ref) {
+    const { children, ...rest } = props;
+    const childCount = React.Children.count(children);
+
+    return (
+      <ul
+        {...rest}
+        ref={ref}
+        style={{ height: 300, padding: 0, margin: 0, listStyle: 'none' }}
+      >
+        <Virtuoso
+          style={{ height: '100%' }}
+          totalCount={React.Children.count(children)}
+          itemContent={(index) => React.Children.toArray(children)[index]}
+          rangeChanged={({ endIndex }) => {
+            if (endIndex >= childCount - 5) {
+              fetchOptions();
+            }
+          }}
+        />
+      </ul>
+    );
+  });
 
   const GradientTextField = styled(TextField)(() => ({
     '& .MuiOutlinedInput-root': {
-      color: 'black',
+      color: 'white',
       borderRadius: '8px',
       '& fieldset': {
         border: '2px solid var(--quinary)',
@@ -39,37 +102,41 @@ const CategorySelect = ({ control }: { control: any }) => {
 
   return (
     <Controller
-      name="categories"
+      name="Category"
       control={control}
       render={({ field }) => (
         <Autocomplete
-          multiple
-          options={data?.categories || []}
-          getOptionLabel={(option) => option.name}
-          isOptionEqualToValue={(option, value) => option._id === value._id}
+          disableListWrap
+          options={options}
+          open={open}
+          onOpen={() => setOpen(true)}
+          onClose={() => setOpen(false)}
+          loading={isFetching}
+          value={selected}
           onChange={(_, newValue) => {
-            if (newValue.length <= 1) {
-              field.onChange(newValue);
-            }
+            setSelected(newValue);
+            field.onChange(newValue);
           }}
-          value={field.value || []}
+          getOptionLabel={(option) => option.name}
+          isOptionEqualToValue={(a, b) => a._id === b._id}
           renderInput={(params) => (
             <GradientTextField
               {...params}
-              label="Category (max 1)"
+              label="Category"
               variant="outlined"
               fullWidth
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (
                   <>
-                    {isLoading ? <CircularProgress size={20} /> : null}
+                    {isFetching ? <CircularProgress size={20} /> : null}
                     {params.InputProps.endAdornment}
                   </>
                 ),
               }}
             />
           )}
+          slots={{ listbox: ListboxComponent }}
           slotProps={{
             chip: {
               sx: {
