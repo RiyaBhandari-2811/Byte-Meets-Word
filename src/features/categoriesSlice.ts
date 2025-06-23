@@ -12,4 +12,5 @@ export const categoriesSlice = createApi({
     }),
   }),
 });
-export const { useGetCategoriesQuery } = categoriesSlice;
+export const { useGetCategoriesQuery, useLazyGetCategoriesQuery } =
+  categoriesSlice;
