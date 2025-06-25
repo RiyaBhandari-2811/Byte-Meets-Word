@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetArticleByIdQuery } from '@/features/articlesSlice';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export interface IArticle {
   title: string;
@@ -28,6 +29,7 @@ export interface IArticle {
 }
 
 const ArticleDetail: React.FC = () => {
+  const navigate = useNavigate();
   const userStore = useSelector((state: any) => state.userStore);
 
   console.log('userStore: ', userStore);
@@ -41,6 +43,14 @@ const ArticleDetail: React.FC = () => {
   if (isLoading) return <p>Loading...</p>;
 
   console.log(article);
+
+  const handleEdit = () => {
+    navigate('/editor', {
+      state: {
+        article,
+      },
+    });
+  };
 
   const copyCode = async (codeText: string) => {
     try {
@@ -166,7 +176,11 @@ const ArticleDetail: React.FC = () => {
           >{`${article.createdAt} - ${article.readTime}`}</Typography>
 
           {userStore.role === 'admin' && (
-            <Button color="info" sx={{ maxWidth: 'max-content' }}>
+            <Button
+              color="info"
+              sx={{ maxWidth: 'max-content' }}
+              onClick={handleEdit}
+            >
               Edit
             </Button>
           )}
