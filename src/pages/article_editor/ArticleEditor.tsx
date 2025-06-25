@@ -8,9 +8,14 @@ import Stack from '@mui/material/Stack/Stack';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '@/features/store_slice/userStoreSlice';
+import { useLocation } from 'react-router-dom';
 
 const ArticleEditor = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const post = location.state;
+
+  console.log('POST:: ', post);
 
   const [page, setPage] = useState(0);
   const defaultValues = {
