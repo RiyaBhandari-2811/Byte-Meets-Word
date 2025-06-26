@@ -4,16 +4,44 @@ import { styled, TextField, Stack, Button } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import TagSelect from '../tag_select/TagSelect ';
 import CategorySelect from '../category_select/CategorySelect';
+import { useEffect } from 'react';
 
 interface ArticleFormProps {
   handleNext: (data: any) => void;
   defaultValues: any;
+  post: any;
 }
 
-const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
-  const { control, handleSubmit } = useForm({
+const ArticleForm = ({ handleNext, defaultValues, post }: ArticleFormProps) => {
+  const { control, handleSubmit, reset } = useForm({
     defaultValues,
   });
+
+  console.log('POST:: ', post.article);
+
+  const bufferToHex = (buffer: { data: number[] }) => {
+    return buffer.data.map((b) => b.toString(16).padStart(2, '0')).join('');
+  };
+
+  useEffect(() => {
+    if (post) {
+      const getHexId = (obj: any) =>
+        obj?.buffer ? bufferToHex(obj.buffer) : null;
+
+      const article = post.article;
+
+      reset({
+        title: article.title || '',
+        subtitle: '',
+        description: article.summary || '',
+        featureImage: article.featureImage || '',
+        tags: article.tags?.map(getHexId) || [],
+        category: getHexId(post.category),
+        readTime: article.readTime?.toString() || '',
+        isActive: article.isActive || false,
+      });
+    }
+  }, [post, reset]);
 
   const GradientTextField = styled(TextField)(() => ({
     '& .MuiOutlinedInput-root': {
@@ -157,7 +185,7 @@ const ArticleForm = ({ handleNext, defaultValues }: ArticleFormProps) => {
           render={() => <TagSelect control={control} />}
         />
         <Controller
-          name={'tags'}
+          name={'category'}
           control={control}
           render={() => <CategorySelect control={control} />}
         />
