@@ -15,8 +15,6 @@ const ArticleEditor = () => {
   const location = useLocation();
   const post = location.state;
 
-  console.log('POST:: ', post);
-
   const [page, setPage] = useState(0);
   const defaultValues = {
     title: '',
@@ -28,6 +26,7 @@ const ArticleEditor = () => {
     readTime: '',
     isActive: false,
   };
+
   const [formData, setFormData] = useState(defaultValues);
 
   const handleNext = (dataFromStep: any) => {
@@ -42,9 +41,13 @@ const ArticleEditor = () => {
   const ActivePage = () => {
     if (page === 1) {
       return <Editor formData={formData} handlePrev={handlePrev} />;
-    } else if (page === 0) {
+    } else if (page === 0 && post) {
       return (
-        <ArticleForm handleNext={handleNext} defaultValues={defaultValues} />
+        <ArticleForm
+          handleNext={handleNext}
+          defaultValues={defaultValues}
+          post={post}
+        />
       );
     } else {
       return null;
