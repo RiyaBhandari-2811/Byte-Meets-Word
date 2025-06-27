@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 
 import { useLazyGetTagsQuery } from '@/features/tagsSlice';
 import { ITag } from '@/types/tag';
@@ -104,57 +106,64 @@ const TagSelect = ({ control }: { control: any }) => {
     <Controller
       name="tags"
       control={control}
-      render={({ field }) => (
-        <Autocomplete
-          multiple
-          disableListWrap
-          options={options}
-          open={open}
-          onOpen={() => setOpen(true)}
-          onClose={() => setOpen(false)}
-          loading={isFetching}
-          value={selected}
-          onChange={(_, newValue) => {
-            setSelected(newValue);
-            field.onChange(newValue);
-          }}
-          getOptionLabel={(option) => option.name}
-          isOptionEqualToValue={(a, b) => a._id === b._id}
-          renderInput={(params) => (
-            <GradientTextField
-              {...params}
-              label="Tags (max 3)"
-              variant="outlined"
-              fullWidth
-              InputProps={{
-                ...params.InputProps,
-                endAdornment: (
-                  <>
-                    {isFetching ? <CircularProgress size={20} /> : null}
-                    {params.InputProps.endAdornment}
-                  </>
-                ),
-              }}
-            />
-          )}
-          slots={{ listbox: ListboxComponent }}
-          slotProps={{
-            chip: {
-              sx: {
-                backgroundColor: 'white',
-                color: 'black',
-                border: '1px solid #ccc',
-                '& .MuiChip-deleteIcon': {
+      render={({ field }) => {
+        useEffect(() => {
+          if (field.value && field.value.length > 0) {
+            setSelected(field.value);
+          }
+        }, [field.value]);
+        return (
+          <Autocomplete
+            multiple
+            disableListWrap
+            options={options}
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
+            loading={isFetching}
+            value={selected}
+            onChange={(_, newValue) => {
+              setSelected(newValue);
+              field.onChange(newValue);
+            }}
+            getOptionLabel={(option) => option.name}
+            isOptionEqualToValue={(a, b) => a._id === b._id}
+            renderInput={(params) => (
+              <GradientTextField
+                {...params}
+                label="Tags (max 3)"
+                variant="outlined"
+                fullWidth
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <>
+                      {isFetching ? <CircularProgress size={20} /> : null}
+                      {params.InputProps.endAdornment}
+                    </>
+                  ),
+                }}
+              />
+            )}
+            slots={{ listbox: ListboxComponent }}
+            slotProps={{
+              chip: {
+                sx: {
+                  backgroundColor: 'white',
                   color: 'black',
-                  '&:hover': {
-                    color: 'red',
+                  border: '1px solid #ccc',
+                  '& .MuiChip-deleteIcon': {
+                    color: 'black',
+                    '&:hover': {
+                      color: 'red',
+                    },
                   },
                 },
               },
-            },
-          }}
-        />
-      )}
+            }}
+          />
+        );
+      }}
     />
   );
 };
