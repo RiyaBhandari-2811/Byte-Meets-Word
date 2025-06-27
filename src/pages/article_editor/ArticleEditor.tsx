@@ -41,7 +41,7 @@ const ArticleEditor = () => {
   const ActivePage = () => {
     if (page === 1) {
       return <Editor formData={formData} handlePrev={handlePrev} />;
-    } else if (page === 0 && post) {
+    } else if (page === 0) {
       return (
         <ArticleForm
           handleNext={handleNext}

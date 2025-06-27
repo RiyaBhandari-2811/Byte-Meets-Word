@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 interface ArticleFormProps {
   handleNext: (data: any) => void;
   defaultValues: any;
-  post: any;
+  post: any | null;
 }
 
 const ArticleForm = ({ handleNext, defaultValues, post }: ArticleFormProps) => {
@@ -17,28 +17,21 @@ const ArticleForm = ({ handleNext, defaultValues, post }: ArticleFormProps) => {
     defaultValues,
   });
 
-  console.log('POST:: ', post.article);
-
-  const bufferToHex = (buffer: { data: number[] }) => {
-    return buffer.data.map((b) => b.toString(16).padStart(2, '0')).join('');
-  };
+  console.log('post', post);
 
   useEffect(() => {
     if (post) {
-      const getHexId = (obj: any) =>
-        obj?.buffer ? bufferToHex(obj.buffer) : null;
-
       const article = post.article;
 
       reset({
-        title: article.title || '',
+        title: article.title,
         subtitle: '',
-        description: article.summary || '',
-        featureImage: article.featureImage || '',
-        tags: article.tags?.map(getHexId) || [],
-        category: getHexId(post.category),
-        readTime: article.readTime?.toString() || '',
-        isActive: article.isActive || false,
+        description: article.summary,
+        featureImage: article.featureImage,
+        tags: article.tags,
+        category: article.category,
+        readTime: article.readTime?.toString(),
+        isActive: article.isActive,
       });
     }
   }, [post, reset]);
