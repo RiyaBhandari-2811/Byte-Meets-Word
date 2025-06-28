@@ -104,7 +104,7 @@ const CategorySelect = ({ control }: { control: any }) => {
 
   return (
     <Controller
-      name="Category"
+      name="category"
       control={control}
       render={({ field }) => {
         useEffect(() => {

@@ -1,21 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Stack } from '@mui/material';
 import Button from '@mui/material/Button/Button';
 import styled from '@mui/material/styles/styled';
-import TextEditor from '../text_editor/TextEditor';
-import { useState } from 'react';
-import { useCreateArticleMutation } from '@/features/articlesSlice';
+import { useEffect, useState } from 'react';
+import {
+  useCreateArticleMutation,
+  useUpdateArticleMutation,
+} from '@/features/articlesSlice';
 import { useSelector } from 'react-redux';
+import { Stack } from '@mui/material';
+import TextEditor from '../text_editor/TextEditor';
 
 const Editor = ({
   formData,
   handlePrev,
+  post,
 }: {
   formData: any;
   handlePrev: any;
+  post: any;
 }) => {
   const [postArticle] = useCreateArticleMutation();
+  const [updateArticle] = useUpdateArticleMutation();
   const [mainContent, setMainContent] = useState('');
   const SubmitButton = styled(Button)({
     background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
@@ -30,14 +36,27 @@ const Editor = ({
     },
   });
 
+  useEffect(() => {
+    if (post) {
+      setMainContent(post.article.mainContent);
+    }
+  }, [post]);
+
   const userStore: any = useSelector((state: any) => state.userStore);
 
   console.log(userStore);
 
   const handleSubmit = () => {
     const payload = { ...formData, mainContent };
-    console.log('payload', payload);
-    postArticle({ payload, authToken: userStore.token });
+    if (formData.id) {
+      updateArticle({
+        articleId: formData.id,
+        payload,
+        authToken: userStore.token,
+      });
+    } else {
+      postArticle({ payload, authToken: userStore.token });
+    }
   };
 
   return (
