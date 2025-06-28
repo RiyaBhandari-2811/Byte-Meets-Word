@@ -22,8 +22,8 @@ const ArticleForm = ({ handleNext, defaultValues, post }: ArticleFormProps) => {
   useEffect(() => {
     if (post) {
       const article = post.article;
-
       reset({
+        id: article._id || null,
         title: article.title,
         subtitle: '',
         description: article.summary,

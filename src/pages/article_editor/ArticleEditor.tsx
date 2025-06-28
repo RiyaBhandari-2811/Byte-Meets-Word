@@ -17,6 +17,7 @@ const ArticleEditor = () => {
 
   const [page, setPage] = useState(0);
   const defaultValues = {
+    id: '',
     title: '',
     subtitle: '',
     description: '',
@@ -40,7 +41,7 @@ const ArticleEditor = () => {
 
   const ActivePage = () => {
     if (page === 1) {
-      return <Editor formData={formData} handlePrev={handlePrev} />;
+      return <Editor formData={formData} handlePrev={handlePrev} post={post} />;
     } else if (page === 0) {
       return (
         <ArticleForm

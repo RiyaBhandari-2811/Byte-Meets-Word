@@ -45,6 +45,20 @@ export const articlesSlice = createApi({
         },
       }),
     }),
+    updateArticle: builder.mutation<
+      IArticleDetail,
+      { articleId: string; payload: Partial<IArticleDetail>; authToken: string }
+    >({
+      query: ({ articleId, payload, authToken }) => ({
+        url: `/articles?articleId=${articleId}`,
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          Authorization: authToken,
+        },
+      }),
+    }),
   }),
 });
 
@@ -54,4 +68,5 @@ export const {
   useGetAllArticlesQuery,
   useGetAllArticlesByCategoryIdQuery,
   useCreateArticleMutation,
+  useUpdateArticleMutation,
 } = articlesSlice;
