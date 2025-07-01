@@ -11,7 +11,6 @@ import {
 import { styled } from '@mui/material/styles';
 import React from 'react';
 
-// Types for the button variant
 type ButtonVariant =
   | 'contained'
   | 'gradient'
@@ -35,7 +34,7 @@ interface ButtonAtomProps {
   sx?: any;
 }
 
-const GradientButton = styled(Button)(({ theme }) => ({
+const GradientButton = styled(Button)(() => ({
   background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
   color: 'rgba(30, 41, 59, 1)',
   textTransform: 'none',
@@ -154,7 +153,7 @@ export const ButtonAtom: React.FC<ButtonAtomProps> = ({
     case 'toggle':
       return (
         <ToggleButton
-          value={navText}
+          value={navText ?? ''}
           onClick={onClick}
           sx={{
             border: '1px solid grey',

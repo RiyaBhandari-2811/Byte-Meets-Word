@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  Button,
   InputAdornment,
   Stack,
   styled,
@@ -14,6 +13,7 @@ import { Controller, FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { ButtonAtom } from '../atoms/Button/ButtonAtom';
 
 const Newsletter: React.FC = () => {
   const [subscribe, { isLoading }] = useSubscribeMutation();
@@ -39,18 +39,6 @@ const Newsletter: React.FC = () => {
     },
     '& .MuiOutlinedInput-notchedOutline': {
       border: 'none',
-    },
-  });
-
-  const SubscribeButton = styled(Button)({
-    background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
-    color: 'rgba(30, 41, 59, 1)',
-    textTransform: 'none',
-    fontWeight: 'bold',
-    borderRadius: '50px',
-    padding: '7px 35px',
-    '&:hover': {
-      background: 'linear-gradient(90deg, #1c92ff, #27d7ff)',
     },
   });
 
@@ -150,9 +138,13 @@ const Newsletter: React.FC = () => {
                   input: {
                     endAdornment: (
                       <InputAdornment position="end">
-                        <SubscribeButton type="submit" disabled={isLoading}>
+                        <ButtonAtom
+                          variant="gradient"
+                          type="submit"
+                          disabled={isLoading}
+                        >
                           Subscribe
-                        </SubscribeButton>
+                        </ButtonAtom>
                       </InputAdornment>
                     ),
                   },
