@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Heading from '@/components/heading/Heading';
 import {
-  Button,
   CircularProgress,
   FormControl,
   IconButton,
@@ -22,6 +21,7 @@ import { useCreateUserMutation, useSignInMutation } from '@/features/userSlice';
 import { useDispatch } from 'react-redux';
 import navigateToRoute, { NavigateFunction } from '@/utils/navigateTo';
 import { setUser } from '@/features/store_slice/userStoreSlice';
+import { ButtonAtom } from '@/components/atoms/Button/ButtonAtom';
 
 const Auth = () => {
   const [
@@ -73,18 +73,6 @@ const Auth = () => {
     signinError,
     signupError,
   ]);
-
-  const GradientButton = styled(Button)({
-    background: 'linear-gradient(90deg, #27d7ff, #1c92ff)',
-    color: 'rgba(30, 41, 59, 1)',
-    textTransform: 'none',
-    fontWeight: 'bold',
-    borderRadius: '50px',
-    padding: '7px 35px',
-    '&:hover': {
-      background: 'linear-gradient(90deg, #1c92ff, #27d7ff)',
-    },
-  });
 
   const GradientTextField = styled(TextField)(() => ({
     '& .MuiOutlinedInput-root': {
@@ -270,7 +258,11 @@ const Auth = () => {
           </Typography>
         )}
 
-        <GradientButton type="submit" disabled={signinLoading || signupLoading}>
+        <ButtonAtom
+          variant="gradient"
+          type="submit"
+          disabled={signinLoading || signupLoading}
+        >
           {signinLoading || signupLoading ? (
             <CircularProgress />
           ) : action === 'signUp' ? (
@@ -278,7 +270,7 @@ const Auth = () => {
           ) : (
             'Sign In'
           )}
-        </GradientButton>
+        </ButtonAtom>
 
         {(isSignInError || isSignUpError) && (
           <Typography color="error" textAlign={'center'}>
