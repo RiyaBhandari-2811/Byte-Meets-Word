@@ -16,7 +16,7 @@ type ButtonVariant =
   | 'gradient'
   | 'outlined'
   | 'text'
-  | 'icon'
+  | 'icon-end'
   | 'nav'
   | 'toggle';
 
@@ -70,7 +70,6 @@ export const ButtonAtom: React.FC<ButtonAtomProps> = ({
   isActive,
   navText,
   navPath,
-  showPassword,
   sx = {},
 }) => {
   switch (variant) {
@@ -112,7 +111,7 @@ export const ButtonAtom: React.FC<ButtonAtomProps> = ({
         </Button>
       );
 
-    case 'icon':
+    case 'icon-end':
       return (
         <IconButton onClick={onClick} edge="end" sx={sx}>
           {icon}
