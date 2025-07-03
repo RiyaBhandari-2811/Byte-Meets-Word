@@ -3,7 +3,6 @@ import Heading from '@/components/heading/Heading';
 import {
   CircularProgress,
   FormControl,
-  IconButton,
   InputAdornment,
   InputLabel,
   Link,
@@ -214,17 +213,12 @@ const Auth = () => {
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label={
-                        showPassword
-                          ? 'hide the password'
-                          : 'display the password'
-                      }
+                    <ButtonAtom
+                      variant="icon-end"
                       onClick={handleClickShowPassword}
-                      edge="end"
                     >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
+                    </ButtonAtom>
                   </InputAdornment>
                 }
                 label="Password"
